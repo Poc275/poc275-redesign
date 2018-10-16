@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/base-styles.css">
+        <link rel="stylesheet" href="../usa-canada/usa-canada-trip-style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        
+        <div id="photos-container">
+            <img class="opaque" src="photos/massachusetts-state-house.jpg" alt="massachusetts state house" />
+            <img src="photos/boston-common.jpg" alt="boston common" />
+            <img src="photos/old-state-house.jpg" alt="old state house" />
+            <img src="photos/boston-harbour.jpg" alt="boston harbour" />
+            <img src="photos/boston-common-2.jpg" alt="boston common" />
+            <img src="photos/charles-river-esplanade.jpg" alt="charles river esplanade" />
+            <img src="photos/view-from-charles-river-esplanade.jpg" alt="view from charles river esplanade" />
+            <img src="photos/fenway-park-tour.jpg" alt="fenway park" />
+            <img src="photos/fenway-park-scoreboard.jpg" alt="fenway park scoreboard" />
+            <img src="photos/big-papi-hits-home-run.jpg" alt="big papi david ortiz celebrates after hitting a home run" />
+            <img src="photos/fenway-park.jpg" alt="fenway park during a red sox versus kansas city royals game on july 9th 2009" />
+            <img src="photos/fenway-park-sign.jpg" alt="fenway park sign" />
+        </div>
+        <p id="controls">
+            <span class="photo-selected">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+            <span>12</span>
+        </p>
+
+        <div id="menu">
+            <p id="home-link"><a href="usa-canada-trip.html">USA &amp; Canada</a></p>
+            <nav>
+                <ul>
+                    <li><a href="nyc.html">New York</a></li>
+                    <li><a href="washington.html">Washington D.C</a></li>
+                    <li><a href="toronto.html">Toronto</a></li>
+                    <li class="selected"><a href="boston.html">Boston</a></li>
+                </ul>
+                <ul class="secondary-nav">
+                    <li><a href="boston-activities.html">Things to do</a></li>
+                    <li><a href="boston-places.html">Points of interest</a></li>
+                    <li class="selected"><a href="boston-photos.html">Photos</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- JavaScript at the bottom for fast page loading -->
+        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+        <script src="photos.js"></script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-44042917-4', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+
+    </body>
+</html>

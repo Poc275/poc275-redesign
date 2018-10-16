@@ -1,0 +1,509 @@
+/* TYPOGRAPHY */
+body,
+ul li {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0px 0px 20px #000;
+}
+
+li {
+    font-size: 0.8em;
+    list-style: none;
+}
+
+p {
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+p.bold {
+    font-weight: 400;
+}
+
+#photographer {
+    font-style: italic;
+    margin: 10px 0 0 0;
+    text-align: right;
+}
+
+#photographer a {
+    color: #fff;
+}
+
+#photographer a:hover {
+    color: #06e;
+}
+
+article h2 {
+    font-size: 2em;
+    color: #fff;
+}
+
+
+/* MAIN */
+body {
+    overflow: hidden;
+}
+
+#container {
+    position: relative;
+}
+
+#container img {
+    position: absolute;
+    left: 0;
+    width: 100%; /* fallback width for Safari and Opera which seem to ignore vw and vh */
+    /*height: 100vh;*/
+    width: 100vw;
+}
+
+#top {
+    animation-name: bgFadeInOut;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 8s;
+    animation-direction: alternate;
+    -webkit-animation-name: bgFadeInOut;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 8s;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes bgFadeInOut {
+    0% {
+        opacity: 1;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes bgFadeInOut {
+    0% {
+        opacity: 1;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+section {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    padding: 10px;
+    width: 35%;
+}
+
+#menu {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 20px;
+    left: 150px;
+    width: 100%;
+}
+
+nav {
+    color: #fff;
+    padding: 10px 0 10px 10px;
+}
+
+nav ul {
+    float: left;
+    margin: 0 20px 0 0;
+    padding-bottom: 10px;
+}
+
+li.selected {
+    font-weight: 600;
+}
+
+.secondary-nav {
+    float: left;
+}
+
+#home-link {
+    position: relative;
+    left: -150px;
+    background-color: #000;
+    width: 128px;
+    height: 70px;
+    margin-bottom: -92px;
+    padding: 10px;
+}
+
+#home-link a {
+    color: #fff;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:visited {
+    color: #999;
+}
+
+a:hover {
+    color: #06e;
+}
+
+
+/* BLOCKQUOTES */
+blockquote {
+    margin: 0;
+    padding: 0;
+    margin: 0.5em 0;
+    line-height: 1.5em;
+    position: relative;
+    font-weight: 400;
+}
+
+blockquote cite:before {
+    content: "\2014";
+}
+
+blockquote cite {
+    display: block;
+    text-align: right;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+/* NYC */
+body#nyc-bg {
+    /*background: url('img/liberty-island-sepia.jpg') no-repeat center center fixed;*/
+    background: url('img/liberty-island-closer.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+section#nyc-section {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    padding: 10px;
+    width: 30%;
+}
+
+/* activities */
+body#nyc-activities-bg {
+    background: url('img/liberty.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+section#nyc-activities {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    width: 35%;
+    height: 90%;
+    overflow: auto;
+    z-index: 100;
+}
+
+section#nyc-activities p {
+    color: #fff;
+}
+
+section#nyc-activities article {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
+section#nyc-activities article img {
+    margin: 10px;
+}
+
+/* points of interest */
+body#nyc-poi-bg {
+    background: url('img/empire-state-building.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+/* WASHINGTON */
+body#washington-bg {
+    background: url('img/view-from-lincoln-memorial.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+section#washington-section {
+    position: absolute;
+    left: 35%;
+    top: 5%;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    padding: 10px;
+    width: 30%;
+}
+
+/* activities */
+body#washington-activities-bg {
+    background: url('img/congress.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+section#washington-activities {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    width: 35%;
+    height: 90%;
+    overflow: auto;
+    z-index: 100;
+}
+
+section#washington-activities p {
+    color: #fff;
+}
+
+section#washington-activities article {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
+section#washington-activities article img {
+    margin: 10px;
+}
+
+/* points of interest */
+body#washington-poi-bg {
+    background: url('img/washington-monument1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+/* TORONTO */
+body#toronto-bg {
+    background: url('img/toronto-harbour.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+section#toronto-section {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    padding: 10px;
+    width: 30%;
+}
+
+/* activities */
+body#toronto-activities-bg {
+    background: url('img/niagara-falls.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+section#toronto-activities {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    width: 35%;
+    height: 90%;
+    overflow: auto;
+    z-index: 100;
+}
+
+section#toronto-activities p {
+    color: #fff;
+}
+
+section#toronto-activities article {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
+section#toronto-activities article img {
+    margin: 10px;
+}
+
+/* points of interest */
+body#toronto-poi-bg {
+    background: url('img/toronto-skyline.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+/* BOSTON */
+body#boston-bg {
+    background: url('img/boston-union-st.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+section#boston-section {
+    position: absolute;
+    left: 8%;
+    top: 5%;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    padding: 10px;
+    width: 25%;
+}
+
+/* activities */
+body#boston-activities-bg {
+    background: url('img/boston-harbour.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+section#boston-activities {
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    width: 35%;
+    height: 90%;
+    overflow: auto;
+    z-index: 100;
+}
+
+section#boston-activities p {
+    color: #fff;
+}
+
+section#boston-activities article {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
+section#boston-activities article img {
+    margin: 10px;
+}
+
+/* points of interest */
+body#boston-poi-bg {
+    background: url('img/boston-charles-street-esplanade.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+/* PHOTO GALLERIES */
+#controls {
+    position: absolute;
+    left: 75%;
+    top: 5%;
+}
+
+#controls span {
+    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0 3px;
+    cursor: pointer;
+    color: #fff;
+}
+
+#controls span.photo-selected {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #000;
+}
+
+#photos-container {
+    position: relative;
+}
+
+#photos-container img {
+    position: absolute;
+    left: 0;
+    width: 100%; /* fallback width for Safari and Opera which seem to ignore vw and vh */
+    /*height: 100vh;*/
+    width: 100vw;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+#photos-container img.opaque {
+    opacity: 1;
+}
+
+
+/* MAPS */
+#map-canvas {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 60%;
+    top: 5%;
+    width: 35%;
+    height: 80%;
+    overflow: auto;
+    z-index: 100;
+}
+
+#poi-popup {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 9%;
+    top: 5%;
+    width: 50%;
+    height: 80%;
+    background: rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+}
+
+#poi-popup img {
+    width: 97%;
+    margin: 10px;
+    max-height: 600px;
+}
+
+#poi-popup h2,
+#poi-popup p {
+    color: #fff;
+    margin: 10px;
+}
+
+#close-icon {
+    position: absolute;
+    left: 94%;
+    top: 2%;
+    z-index: 100;
+    color: #BA0000;
+    cursor: pointer;
+}

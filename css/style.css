@@ -1,0 +1,404 @@
+/* typography */
+body {
+    font-family: 'Cabin', sans-serif;
+    color: #2f2f2f;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 2;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 1.6875rem;
+    line-height: 1.5;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 1.375rem;
+    line-height: 1;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.625;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+li {
+    font-size: 1rem;
+    line-height: 1.625;
+}
+
+/* on larger screens (md) pad out the 
+  font sizing and line-height for legibility  */
+@media (min-width: 768px) {
+    p {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-top: 0;
+        margin-bottom: 1.7rem;
+    }
+
+    li {
+        font-size: 1.125rem;
+        line-height: 1.7;
+    }
+}
+
+ul {
+    padding-inline-start: 0;
+}
+
+/* colour */
+a {
+    transition: border-color .5s;
+    text-decoration: none;
+    border-bottom: 3px solid #fff;
+    color: #f2545b;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom: 3px solid #f2545b;
+    color: #2f2f2f;
+}
+
+/* nav bar */
+#nav-name {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.navbar-nav a {
+    padding-bottom: 0;
+    color: #2f2f2f;
+}
+
+.nav-link {
+    padding-top: 1.2rem;
+}
+
+/* intro */
+#intro {
+    height: 70vh;
+}
+
+/* projects section */
+.project-item {
+    padding: 0;
+}
+
+.project-item-outer {
+    height: 280px;
+    overflow: hidden;
+}
+
+.project-item-inner {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    /* background-position: center; */
+    transition: all 0.5s ease;
+}
+
+.project-item-inner:hover {
+    transform: scale(1.05);
+    /* opacity: 0.25; */
+}
+
+.project-item-inner:hover .overlay {
+    opacity: 1;
+}
+
+#data-vis-project {
+    background-image: url('../img/project-items-grid/parallel-coords-car-fuel-efficiency.jpg');
+}
+
+#codemaster-project {
+    background-image: url('../img/project-items-grid/code-master-android-app.png');
+}
+
+#codemaster-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/code-master-android-app.png');
+}
+
+#usa-canada-trip-project {
+    background-image: url('../img/project-items-grid/usa-canada-trip-homepage.jpg');
+}
+
+#software-renderer-project {
+    background-image: url('../img/project-items-grid/software-renderer-evolution.jpg');
+}
+
+#software-renderer-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/software-renderer-evolution.jpg');
+}
+
+#street-sounds-project {
+    background-image: url('../img/project-items-grid/street-sounds-home.jpg');
+}
+
+#street-sounds-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/street-sounds-home.jpg');
+}
+
+#dual-nback-project {
+    background-image: url('../img/project-items-grid/dual-n-back.jpg');
+}
+
+#dual-nback-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/dual-n-back.jpg');
+}
+
+#good-news-project {
+    background-image: url('../img/project-items-grid/good-news.png');
+}
+
+#good-news-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/good-news.png');
+}
+
+#top-heroes-project {
+    background-image: url('../img/project-items-grid/th-logo.png');
+}
+
+#top-heroes-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/th-logo.png');
+}
+
+#bot-projects {
+    background-image: url('../img/project-items-grid/acrobot.png');
+}
+
+#bot-projects:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/acrobot.png');
+}
+
+#itunes-to-spotify-project {
+    background-image: url('../img/project-items-grid/itunes-to-spotify.png');
+}
+
+#itunes-to-spotify-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/itunes-to-spotify.png');
+}
+
+#data-clubs-project {
+    background-image: url('../img/project-items-grid/data-clubs.png');
+    background-position: center;
+}
+
+#data-clubs-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/data-clubs.png');
+}
+
+#frooble-project {
+    background-image: url('../img/project-items-grid/frooble-grammar-tree.png');
+}
+
+#frooble-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/frooble-grammar-tree.png');
+}
+
+#text-analyser-project {
+    background-image: url('../img/project-items-grid/text-analyser.png');
+}
+
+#text-analyser-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/text-analyser.png');
+}
+
+#windows-api-project {
+    background-image: url('../img/project-items-grid/interprocess-communication.png');
+}
+
+#windows-api-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/interprocess-communication.png');
+}
+
+
+.overlay {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.overlay-title {
+    color: #fff;
+}
+
+/* about me */
+#about-me {
+    background-color: #343A40;
+    margin: 5rem 0;
+}
+
+#about-me-code {
+    font-family: 'Consolas';
+    color: #C8C8C8;
+    margin-bottom: 2rem;
+}
+
+#about-me-code p {
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+/* on larger screens (md) make the code 
+    font size larger to fill the space */
+@media (min-width: 768px) {
+    #about-me-code p {
+        font-size: 1.5vw;
+    }
+}
+
+#mugshot {
+    width: 100px;
+    border-radius: 50px;
+    margin: 1rem 0;
+}
+
+.class {
+    color: #4EC9B0;
+}
+
+.new {
+    color: #569CD6;
+}
+
+.string {
+    color: #D69D85;
+}
+
+.comment {
+    color: #57a64a;
+}
+
+/* contact me */
+#footer-links a:hover {
+    text-decoration: none;
+}
+
+
+/* project pages styling */
+.project-header {
+    height: 100vh;
+    margin-bottom: 2rem;
+}
+
+.project-title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    display: inline-block;
+    padding: 0 3rem 0;
+}
+
+#data-vis-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/gsm-world-alcohol-consumption.jpg') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+#sw-renderer-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/software-renderer-evolution.jpg') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+#street-sounds-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/street-sounds-home.jpg') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+.centre-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* prevent video from overflowing */
+video {
+    max-width: 100%;
+}

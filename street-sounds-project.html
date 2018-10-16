@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>Street Sounds Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="street-sounds-project-header">
+        <div class="row project-title">
+            <h1>Street Sounds</h1>
+            <p><span title="Date">📅</span> September 2012 &dash; December 2012</p>
+            <p><span title="Built With">🔨</span> C#, XAML</p>
+            <p><span title="Tools Used">🔧</span> Visual Studio, Bing Maps API, SoundCloud API</p>
+            <p><span title="Link">🔗</span><a href="https://github.com/Poc275/StreetSounds" target="_blank"> GitHub</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>This was an exciting project as it gave me the chance to develop for the latest Windows 8 operating system. The brief 
+                    was just to create something &lsquo;cool&rsquo; (leaving just enough rope to hang myself with). Looking back, this proved to be an 
+                    excellent form of motivation. Definitive briefs can often stifle innovation as you simply work through each requirement. 
+                    I found that with a looser set of requirements I was more inclined to keep adding functionality as there was just enough 
+                    doubt there as to what constituted a good application.</p>
+
+                <p>As music is one of my passions, I was interested in creating a music based application. Couple this with one of 
+                    <a href="https://soundcloud.com" target="_blank">my favourite music sites</a> and we have a good starting point. One of 
+                    my first ideas was for a way of people to find information about street musicians that they come across. This required 
+                    some form of geo-location functionality which was provided by Bing Maps.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/street-sounds-project/street-sounds-music-by-location.jpg">
+                        <img src="img/project-images/street-sounds-project/street-sounds-music-by-location.jpg" class="figure-img img-fluid rounded" alt="street sounds geo search functionality">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Searching for local music using geo-location
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>One of the projects long running issues was the lack of attributes that the musicians apply to their music. Tracks uploaded 
+                    to SoundCloud have many useful fields to fill in, unfortunately they are not mandatory and many are free-entry fields, which 
+                    give a disparate range of search results when you try and query for such things as street musicians.</p>
+
+                <p>The lack of street musicians on SoundCloud resulted in the project evolving into a broader music discovery application whilst 
+                    still retaining the location functionality. Users can browse for sounds near their current location, from a random point on 
+                    the map, from a specific city, or they can just view the most popular or most recent tracks on SoundCloud and see where on 
+                    the map they are from.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/street-sounds-project/street-sounds-home.jpg">
+                        <img src="img/project-images/street-sounds-project/street-sounds-home.jpg" class="figure-img img-fluid rounded" alt="street sounds home page">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        The home screen displays the current hottest tracks on SoundCloud from your favourite genre
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>From a programming perspective, the built-in Visual Studio templates made sticking to the Windows Store design philosophy 
+                    straight-forward. The majority of the work was spent creating the data model, this made data-binding to the template 
+                    controls relatively simple. The application is written in C#/XAML and utilises the Model-View-View Model (MVVM) pattern.</p>
+
+                <p>The application passed the Windows Certification Test but unfortunately it will not be appearing in the Windows Store 
+                    due to changes in the SoundCloud API that now cause the geo-tagging features to be ignored. This proved to be a valuable 
+                    lesson in using third party APIs! However <a href="https://github.com/Poc275/StreetSounds" target="_blank">I’ve made the code available</a> 
+                    as it may still prove useful to anyone interested in developing Windows Store Apps using the SoundCloud API.</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
