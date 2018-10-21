@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>Top Heroes Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="top-heroes-project-header">
+        <div class="row project-title">
+            <h1>Top Heroes</h1>
+            <p><span title="Date">📅</span> July 2017 &dash; Current</p>
+            <p><span title="Built With">🔨</span> JavaScript | Azure | Docker</p>
+            <p><span title="Tools Used">🔧</span> MongoDB | Express | AngularJS | Node.js | Socket.io</p>
+            <p><span title="Link">🔗</span><a href="https://github.com/Poc275/top-heroes" target="_blank"> GitHub</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h3>Six months earlier… 🍺</h3>
+                <p>I was down the pub with a group of friends, Brexit was a painful, not so distant memory and The Donald had just 
+                    lost the popular vote to become the 45th President of the United States. Over a drink and multiple &ldquo;How has this happened?&rdquo; 
+                    platitudes bordering on the absurd we decided to don our geek capes (hats? costumes?) and do something about it. This 
+                    is how revolutions start right? Hardly Lenin in Vienna, but in our own indomitable fashion we set about making our dent in 
+                    the world.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <img src="img/project-images/top-heroes-project/obama_1.png" class="figure-img img-fluid rounded" alt="the night at the pub in Obama memes">
+                    <figcaption class="figure-caption text-right">
+                        Drinks were imbibed | It got political | Disillusionment inevitably followed.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>We decided that reminding people that, although it may be a bad time now, there are people out there that can 
+                    still provide us with hope in this post truth world. With Donald Trump victory rallies piercing the background it was 
+                    inevitable 😊 that we’d converge on the old card game &ldquo;Top Trumps&rdquo; as the format for our nascent showcase of extraordinary 
+                    human beings. For those souls fortunate enough not to remember the dark days of games that aren’t played on computers, Top 
+                    Trumps is a card game where a deck of cards is based on a certain theme (usually cars) and each card is scored on certain 
+                    categories (top speed, horsepower, size etc.) with the aim being to compare these values to try and &ldquo;trump&rdquo; the opponent’s 
+                    score and win the card. A web-based revamp of this alleged classic game was in order, Top Heroes was born! 🍾</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <img src="img/project-images/top-heroes-project/obama_2.png" class="figure-img img-fluid rounded" alt="the idea forms in Obama memes">
+                    <figcaption class="figure-caption text-right">
+                        An idea forms | The pondering stage... | World domination must surely follow!
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h4>More drink… 🍻</h4>
+                <p>We set about designing the solution. It needed to be dynamic and fast, the standard web request/response model wasn’t going to cut it.<br>
+                    &ldquo;I’ve heard about this cool new JavaScript framework that we could use.&rdquo;<br>
+                    &ldquo;All the cool kids are using that.&rdquo;<br>
+                    &ldquo;I’ve heard it’s great for making to do lists, but will it work for what we need?&rdquo;<br>
+                    And before you knew it we’d assembled enough of the latest cool tools and frameworks that would make a tech talk presenter vomit in excitement.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/top-heroes-project/solution_architecture.jpg">
+                        <img src="img/project-images/top-heroes-project/solution_architecture.jpg" class="figure-img img-fluid rounded" alt="solution architecture diagram">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        At the core of the solution is the MEAN stack: MongoDB, Express, AngularJS, Node.js.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>Back in the post-pub, relentless real world the solution was surprisingly still coherent. The MEAN stack would mean a single 
+                    language (JavaScript) throughout the application, both server and client side, and we could therefore be sure that each part of 
+                    the stack would talk to each other easily. Node.js would gives us high throughput and scalability via its non-blocking event-driven 
+                    paradigm. This is done through the use of callbacks, notifying us when a task is complete meaning it can process other requests 
+                    instead of blocking until completion. All of this without having to make the Faustian pact with threads. Using Express on top of 
+                    Node.js provides a nice web framework that makes it easy to build an API. The data model is relatively straight-forward with 
+                    collections in MongoDB for cards and users. I found the NoSQL approach meant we could get up and running quickly with a database, 
+                    but it was easier for redundancy to creep in which a traditional SQL approach would have caught through normalisation. The schema-less 
+                    nature helped during the early development stages, but eventually most data is structured, ours being no different, so Mongoose was 
+                    used as an ORM providing data validation.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <figure class="figure">
+                    <a href="img/project-images/top-heroes-project/login-screen.gif">
+                        <img src="img/project-images/top-heroes-project/login-screen.gif" class="figure-img img-fluid rounded" alt="login screen animated gif">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Login screen mobile view.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>On the client-side Angular.js gave us the ability to make a dynamic web application. By making AJAX requests under the hood to update 
+                    the game whilst in progress the users are under the impression that it is a &ldquo;live game&rdquo; and they’re not presented with a page refresh 
+                    every time data needs updating. The MVC approach in Angular.js is familiar to most web developers which helped get up to speed quickly. 
+                    The only barrier being the full indoctrination into how things are named, and features such as directives are tricky to get right 
+                    (that dreaded context), but the idea behind it was sound (meaningful HTML tags controlling their own behaviour) which ultimately made it worthwhile 
+                    as you end up with a nice separation of concerns and semantic markup. The UI was created using the excellent 
+                    <a href="https://material.angularjs.org/latest/" target="_blank">Angular.js material library</a> which provided UI controls inspired by the 
+                    Google Material Design language. Socket.io was used to provide real-time communication between the players during a game.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/top-heroes-project/obama_card.jpg">
+                        <img src="img/project-images/top-heroes-project/obama_card.jpg" class="figure-img img-fluid rounded" alt="barack obama top heroes card">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Barack Obama's Top Heroes card front and rear.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>We decided to make use of Azure as our hosting platform. This way we could scale when the disaffected masses came calling to play. Azure 
+                    Web Apps was used to host the application. This PaaS offering meant that we didn’t have to worry about setting up and maintaining and 
+                    infrastructure. Azure Blob Storage was used to host the static content. The database was hosted elsewhere, the MongoDB 
+                    offering in Azure, Cosmos DB, being too expensive for our needs, so we settled for mLab’s free tier. Continuous integration was set up 
+                    using TravisCI which built the app and ran the tests. This then deployed to Azure to complete the continuous deployment pipeline. This 
+                    eventually morphed into a Docker image on a Linux container in Azure which we found to be much faster and just as easy to deploy.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/top-heroes-project/tech_tools.jpg">
+                        <img src="img/project-images/top-heroes-project/tech_tools.jpg" class="figure-img img-fluid rounded" alt="tech tools used in the project">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Tools used during development showing the CI/CD pipeline.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h3>Six months later...</h3>
+                <p>I have a confession to make. My retelling of the story may not have been strictly 100% bona-fide accurate due to the drunken haze it 
+                    was conceived in. In a shocking fake news twist the project I described wasn’t the one that materialised. It was part of the discussion 
+                    but what can I say, we just couldn’t contain our disillusionment and anger with the political situation so 
+                    <a href="https://toptrumps.azurewebsites.net/#!/" target="_blank">this is the end result</a>. Now, before you click I take no responsibility 
+                    for any offence caused. It is not so much tongue-in-cheek as tongue-puncturing-cheek, it is meant as a joke, a parody if you will and 
+                    absolutely not mean to cause offence. You have been warned!</p>
+
+                <h3>// TODO</h3>
+                <p>Top Heroes is still in development and will be released soon if you prefer, how shall I put it? A more optimistic gaming experience.</p>
+                
+                <p>I felt the in-game play could be clunky at times due to it being a web app and the layout not being optimal at certain breakpoints. I’ve 
+                    been playing with the cross-platform framework <a href="https://flutter.io/" target="_blank">Flutter</a> lately and I’m tempted to port 
+                    it to an Android/iOS app. This can consume the API of the application already built so it’s just another front-end in essence. Stay tuned&hellip;</p>
+
+                <p>The fact that only a single user can play a card at any one time provided a tricky UX problem. How could the user not in play be sure what 
+                    was happening? If the user in play took too long the other player was likely to quit. In game chat was implemented to facilitate the players 
+                    talking to each other to try and alleviate this, and also provides some of the essence of the old game where players can talk about their 
+                    cards. A future improvement could be a timer to limit the time spent playing a card.</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
