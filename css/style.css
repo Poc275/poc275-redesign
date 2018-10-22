@@ -68,6 +68,15 @@ ul {
     padding-inline-start: 0;
 }
 
+abbr {
+    font-style: italic;
+}
+
+/* override prettyprint.js border on code snippets */
+pre {
+    border: none!important;
+}
+
 /* colour */
 a {
     transition: border-color .5s;
@@ -398,6 +407,15 @@ a:hover {
             rgba(12, 16, 28, 0.65) 65%,
             rgba(12, 16, 28, 0.65) 66%),
         url('../img/backgrounds/street-sounds-home.jpg') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+#windows-api-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/windows-api-programming.jpg') no-repeat 50% 0 fixed;
     background-size: cover;
 }
 

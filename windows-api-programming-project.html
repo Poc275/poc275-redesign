@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>Windows API Programming Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="windows-api-project-header">
+        <div class="row project-title">
+            <h1>Windows API Programming</h1>
+            <p><span title="Date">📅</span> January 2010 &dash; May 2010</p>
+            <p><span title="Built With">🔨</span> C</p>
+            <p><span title="Tools Used">🔧</span> Win32 API</p>
+            <!-- <p><span title="Link">🔗</span><a href="https://github.com/Poc275/top-heroes" target="_blank"> GitHub</a></p> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h3>Comparison of communication between threads and processes using the Windows API</h3>
+                <p>The idea of this particular application was to try and prove some of the theory that had been taught in an operating systems 
+                    module, specifically, the timing differences between <abbr title="Inter-process communication">IPC</abbr> and 
+                    <abbr title="Inter-thread communication">ITC</abbr>. The theory being that threads are quicker to create than 
+                    processes. However, does this remain true when communicating between threads and processes?</p>
+
+                <p>Communication was achieved through the use of events. For IPC, a pair of programs were created, one acting as a producer 
+                    and the other as a consumer. The producer program creates an event and stores the current &lsquo;time&rsquo; which is retrieved from 
+                    the performance counter. The consumer program then responds to the event, and reads the performance counter to be able 
+                    to calculate the duration.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <figure class="figure">
+                    <a href="img/project-images/windows-api-programming-project/interprocess-communication.png">
+                        <img src="img/project-images/windows-api-programming-project/interprocess-communication.png" class="figure-img img-fluid rounded" alt="producer and consumer programs">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        IPC screenshot showing producer and consumer programs.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>For the consumer to be able to read the producer's starting time, a memory mapped file was created to enable 
+                    both processes to communicate:</p>
+                <pre class="prettyprint">
+                    <code>
+    // Memory sharing struct
+    typedef struct
+    {
+        LARGE_INTEGER startTime;
+    } MemShare;
+
+    // Create Shared Memory
+    hMapFile = CreateFileMapping((HANDLE)0xFFFFFFFF,
+                                        NULL, 
+                                        PAGE_READWRITE, 
+                                        0, 
+                                        sizeof(MemShare), 
+                                        L"MyFileMappingObject");
+
+    // Access shared memory (cast to the struct)
+    memShare = (MemShare*)MapViewOfFile(hMapFile,
+                                        FILE_MAP_READ | FILE_MAP_WRITE,
+                                        0,
+                                        0,
+                                        sizeof(MemShare));
+
+    // Place start counter in shared memory
+    CopyMemory((MemShare*)memShare, &amp;start, sizeof(MemShare));
+                    </code>
+                </pre>
+
+                <p>The consumer program can then read the shared memory and calculate the time taken to respond to the event:</p>
+                <pre class="prettyprint">
+                    <code>
+// Wait for event to be signaled
+WaitForSingleObject(passedParams->hEvent, INFINITE);
+
+// Get end/freq values as soon as event has been signaled
+QueryPerformanceCounter(&end);
+QueryPerformanceFrequency(&freq);
+
+// Open shared memory so we can get the start time
+hMapFile = OpenFileMapping(FILE_MAP_READ | FILE_MAP_WRITE,
+                            FALSE,
+                            L"MyFileMappingObject");
+
+// Access shared memory and calculate duration
+memShare = (MemShare*)MapViewOfFile(hMapFile,
+                                    FILE_MAP_READ | FILE_MAP_WRITE,
+                                    0,
+                                    0,
+                                    sizeof(MemShare));
+
+time = (double)(end.QuadPart - memShare->startTime.QuadPart) / (double)freq.QuadPart;  
+                    </code>
+                </pre>
+
+                <p>The ITC testing was done in exactly the same way, although this could be confined to a single program.</p>
+
+                <p>The results were surprising, IPC was quicker than ITC, but only slightly. One possible explanation is that 
+                    the method of IPC implemented (shared memory) is in fact the fastest form of IPC. This is because it doesn’t 
+                    involve any 3rd party function calls, so there is no overhead associated, as opposed to other IPC techniques.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/windows-api-programming-project/ipc-vs-itc-timings-chart.png">
+                        <img src="img/project-images/windows-api-programming-project/ipc-vs-itc-timings-chart.png" class="figure-img img-fluid rounded" alt="producer and consumer programs">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Overall timing results, the mean shows IPC, surprisingly, is slightly faster than ITC.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>Although this wasn’t my first taste of C programming (if it's yours then you absolutely must start with 
+                    <a href="https://www.amazon.co.uk/C-Programming-Language-2nd/dp/0131103628" target="_blank">this book</a>), 
+                    it was my first attempt at programming for Windows. This proved to be very different from other programming I had done 
+                    up to this point. The Windows API uses a lot of structs, very long method calls and special data types. For anyone 
+                    dabbling in such sorcery I highly recommend 
+                    <a href="https://www.amazon.co.uk/Programming-Windows%C2%AE-Microsoft-Series/dp/157231995X/ref=sr_1_2?ie=UTF8&qid=1411315058&sr=8-2&keywords=programming+windows" target="_blank">
+                        Programming Windows (5th edition) by Charles Petzold
+                    </a>, a.k.a. The Bible!</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
