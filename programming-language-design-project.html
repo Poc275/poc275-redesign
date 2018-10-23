@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>Windows API Programming Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="language-design-project-header">
+        <div class="row project-title">
+            <h1>Programming Language Design</h1>
+            <p><span title="Date">📅</span> January 2013 &dash; May 2013</p>
+            <p><span title="Built With">🔨</span> Java | Frooble 🆕</p>
+            <p><span title="Tools Used">🔧</span> <a href="http://www.antlr.org/" target="_blank">Antlr</a> | <a href="https://llvm.org/" target="_blank">LLVM</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h3>The design and implementation of my own programming language &mdash; Frooble</h3>
+                <p>Frooble is an imperative language with functional programming features. It is a high level, verbose, general programming 
+                    language that aims to be easy to learn. Syntactically and semantically it is very similar to Java and C#.</p>
+
+                <p>Frooble Hello World:</p>
+                <pre class="prettyprint">
+                    <code>
+print "Hello, World!"
+                    </code>
+                </pre>
+
+                <p>All basic data types are supported: integers, floats, strings, bools and arrays. Object orientation is supported with 
+                    class based inheritance:</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/language-design-project/frooble-object-orientation-inheritance-program.png">
+                        <img src="img/project-images/language-design-project/frooble-object-orientation-inheritance-program.png" class="figure-img img-fluid rounded" alt="object orientation in Frooble">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        A Frooble program demonstrating the object orientation and inheritance capabilities.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>Static scoping is supported allowing local and global variables. Control flow is provided by while loops and for loops. Decisions 
+                    are supported through if/else statements. Code reuse is allowed via functions, which also return values. Frooble programs are 
+                    read ahead so functions can be called before they are defined, C like prototypes are therefore not required. Functions can also 
+                    be stored as variables and executed later as per first-order functions, which is common in the functional programming paradigm:</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/language-design-project/frooble-first-order-functions.png">
+                        <img src="img/project-images/language-design-project/frooble-first-order-functions.png" class="figure-img img-fluid rounded" alt="Frooble functional programming example">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        Functional programming in Frooble. The identifier <var>x</var> is retrieved from the parameter list provided 
+                        to <var>f</var>. <var>Incrementor</var> is a function that &lsquo;adds 5 to something&rsquo;.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/language-design-project/frooble-recursion.png">
+                        <img src="img/project-images/language-design-project/frooble-recursion.png" class="figure-img img-fluid rounded" alt="Recursion in Frooble">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        <dl>
+                            <dt>Recursion:</dt>
+                            <dd>See Recursion</dd>
+                        </dl>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>I wanted Frooble to be able to communicate easily with the outside world, any useful programming language does not exist in isolation. 
+                    Frooble can communicate with C/C++ through the <abbr title="Java Native Interface">JNI</abbr>, allowing easy access to an already 
+                    available standard library. Frooble can export symbols for use in other languages, for example the Python interpreter can be embedded, 
+                    or a C program can read exported Frooble symbols. This is achieved via memory mapped files, so any language with support for reading file 
+                    mappings can integrate with Frooble. A web data type is also available for consuming web APIs. This data type takes a URL that returns 
+                    JSON data. This data is then bound to a Frooble class which can be easily accessed to retrieve the data. The aim of this data type was to 
+                    abstract out a lot of the hard work involved in consuming web APIs:</p>
+
+                <pre class="prettyprint">
+                    <code>
+string city = "Derby"
+
+web weather = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",uk&units=metric"
+
+print "The weather in " + city + " is " + weather.description + " with a temperature of " + weather.temp + " degrees celsius"
+                    </code>
+                </pre>
+
+                <p>The actual implementation is an interpreter written in Java using the ANTLR4 parser generator. ANTLR removes a lot of the hard work 
+                    involved in parsing source code, leaving a nice syntax tree to work with. For appreciation a small part of the language was implemented 
+                    as a compiler targeting the virtual architecture LLVM.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <figure class="figure">
+                    <a href="img/project-images/language-design-project/frooble-method-declaration-grammar-tree.png">
+                        <img src="img/project-images/language-design-project/frooble-method-declaration-grammar-tree.png" class="figure-img img-fluid rounded" alt="example ANTLR grammar tree">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        ANTLR grammar tree for a Frooble method declaration. Once the source code is parsed into a tree it can be walked to interpret the 
+                        instructions. The instructions can be implemented in any other language, usually a lower level language such as machine code, but in 
+                        this case Java is used for simplicity.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>This project, although a challenge, was very rewarding. It completed a lot of gaps in my knowledge in terms of how programming 
+                    languages have evolved and why there are so many of them. In the early years of learning to program you are never really told 
+                    why languages are constructed how they are. It is not until you try and create your own that you can get an appreciation for 
+                    the myriad factors that are involved. The overall lesson from this work was that there isn’t really any sort of magic happening, 
+                    there are just lower levels of detail.</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
