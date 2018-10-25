@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>NBack Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="nback-project-header">
+        <div class="row project-title">
+            <h1>Dual N Back</h1>
+            <p><span title="Date">📅</span> October 2016 &dash; November 2016</p>
+            <p><span title="Built With">🔨</span> JavaScript</p>
+            <p><span title="Tools Used">🔧</span> Bootstrap | jQuery | QUnit</p>
+            <p><span title="Link">🔗</span><a href="NBack/index.html" target="_blank"> Play</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <h2>Dual N-Back Training</h2>
+                <p>Dual N-Back training is an application that may, with daily training, improve a person's memory.</p>
+
+                <p>This application is a replica of the Dual N-Back application that was used in Jaeggi, S., Buschkuehl, M., 
+                    Jonides, J. and Perrig, W. (2008). Improving fluid intelligence with training on working memory. <cite>Proceedings 
+                    of the National Academy of Sciences of the United States of America</cite>, 105(19), pp. 6829-6833. Further 
+                    information available <a href="http://www.soakyourhead.com/Research.aspx" target="_blank">on the original site</a>, and 
+                    <a href="http://www.pnas.org/content/105/19/6829.abstract" target="_blank">in the research paper</a>.</p>
+
+                <p>The application is a JavaScript conversion of the <a href="http://www.soakyourhead.com/dual-n-back.aspx" target="_blank">original 
+                    Silverlight version</a>. As support for Silverlight diminishes in most modern browsers, this conversion will 
+                    hopefully help users continue to use Dual N-Back training.</p>
+
+                <h3>How to Play</h3>
+                <p>When you press the Start button, the application will begin by showing you a box and playing an audio recording of a letter. 
+                    Remember where the box appeared and also remember the letter. After a few seconds, another box appears and another letter is 
+                    played. Remember these too. When you start the game, it will start at the 2-back level (displayed across the top). This means 
+                    that you need to remember if a letter was repeated or a box appeared in the same location 2 times ago. For example:</p>
+
+                <ol>
+                    <li>Top-right corner, letter 'F'.</li>
+                    <li>Bottom-right corner, letter 'G'.</li>
+                    <li>Top-right corner, letter 'S'.</li>
+                    <li>Bottom-middle, letter 'G'.</li>
+                </ol>
+
+                <p>For the first 2 &lsquo;blocks&rsquo; you don't need to do anything because you are at the 2-back level (this obviously increases as you go up 
+                    the levels). But when the third block is presented you need to decide if it matches the position or the letter (or both) of block 1. 
+                    Likewise, for block 4, does it match either the position, letter, or both, of block 2, etc. etc. Press the letter <kbd>a</kbd> on the keyboard 
+                    if the position matches, <kbd>l</kbd> if the letter matches, or both if they both match.</p>
+
+                <p>So, from the example above, when block 3 is presented, the position matches block 1 (top-right corner), but the letters do not. So, press 
+                    <kbd>a</kbd>. For block 4, the position doesn't match block 2, but the letter does, so press <kbd>l</kbd>. Remember blocks 3 and 4 to carry on. 
+                    Each session has 20 blocks. At the end of the session, if you have performed well, the level will increase to 3. So, you need to remember 
+                    whenever the letter/square matches what was said/displayed 3 times ago. The level can increase or decrease depending on your performance. 
+                    An entire training run consists of 20 sessions. Finish the entire run to see your results, which you can optionally save by toggling the 
+                    save progress switch.</p>
+
+                <p>Be aware that this is a difficult game. At first, it will be difficult to press the correct keys. Be assured that this was the same for the 
+                    research subjects when they first started. However, after enough practice, the subjects improved.</p>
+
+                <p>For more information see the <a href="http://www.soakyourhead.com/dual-n-back.aspx" target="_blank">demo on the original site</a>. Note 
+                    this requires Silverlight. I will be porting the demo in due course.</p>
+
+                <h3>Bugs &amp; Issues</h3>
+                <p>Have a bug or an issue? <a href="https://github.com/Poc275/NBack/issues" target="_blank">Open a new issue</a> on GitHub.</p>
+
+                <h3>References</h3>
+                <p>The original source code is available <a href="http://www.soakyourhead.com/dual-n-back-open-source.aspx" target="_blank">here</a>.</p>
+
+                <p>Uses Start Bootstrap which was created by and maintained by <strong><a href="http://davidmiller.io/" target="_blank">David Miller</a></strong>, 
+                    Owner of <a href="http://blackrockdigital.io/" target="_blank">Blackrock Digital</a>.</p>
+
+                <p>Uses <a href="http://www.bootstraptoggle.com/" target="_blank">Bootstrap Toggle</a> for the toggle switch.</p>
+
+                <p><a href="https://qunitjs.com/" target="_blank">QUnit</a> used for the tests.</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>

@@ -426,6 +426,15 @@ a:hover {
     background-size: cover;
 }
 
+#nback-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/dual-n-back.jpg') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
 #itunes-to-spotify-project-header {
     background: linear-gradient(to bottom,
             rgba(12, 16, 28, 0) 0%,
