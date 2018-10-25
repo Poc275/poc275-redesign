@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+
+    <title>Codemaster Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="codemaster-project-header">
+        <div class="row project-title">
+            <h1>Codemaster</h1>
+            <p><span title="Date">📅</span> January 2011 &dash; May 2011</p>
+            <p><span title="Built With">🔨</span> Java</p>
+            <p><span title="Tools Used">🔧</span> Android</p>
+            <p><span title="Link">🔗</span><a href="https://play.google.com/store/apps/details?id=com.pete.assignment.codemaster" target="_blank"> Google Play</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <p>This project was my first attempt at making an Android app. It is a remake of the old board game Mastermind where the object of the 
+                    game is to crack a coloured code within an allotted number of attempts. Feedback pegs indicate how close you are to a correct guess 
+                    after each turn.</p>
+
+                <p>The project provided a different type of challenge because of the hardware limitations inherent in mobile devices. Due to the multi-tasking 
+                    nature of a mobile device, many applications will be running at any one time, meaning memory is at a premium. This warranted a judicious 
+                    use of new objects to minimise time spent garbage collecting, member variables were accessed directly instead of via getters and setters 
+                    to speed things up, and static classes were favoured over non-static to save on memory.</p>
+
+                <p>One of the most important optimisations was the use of threads. The main thread drives the user interface loop, so if this is affected 
+                    by slow performance the user receives a not responding warning. This acute lack of responsiveness is particularly evident on touch screen 
+                    devices where users expect a much faster response to interactions than with a traditional mouse. Therefore any work that is potentially 
+                    time consuming is fired off onto a child thread, keeping the user interface responsive.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <figure class="figure">
+                    <a href="img/project-images/codemaster-project/code-master-win.jpg">
+                        <img src="img/project-images/codemaster-project/code-master-win.jpg" class="figure-img img-fluid rounded" alt="codemaster screenshot">
+                    </a>
+                    <figcaption class="figure-caption text-right">
+                        In game screenshot showing the code being broken.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
