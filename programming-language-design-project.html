@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    
     <title>Windows API Programming Project</title>
   </head>
   <body>
@@ -25,7 +26,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <h3>The design and implementation of my own programming language &mdash; Frooble</h3>
                 <p>Frooble is an imperative language with functional programming features. It is a high level, verbose, general programming 
                     language that aims to be easy to learn. Syntactically and semantically it is very similar to Java and C#.</p>
@@ -43,20 +44,20 @@ print "Hello, World!"
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <figure class="figure">
                     <a href="img/project-images/language-design-project/frooble-object-orientation-inheritance-program.png">
                         <img src="img/project-images/language-design-project/frooble-object-orientation-inheritance-program.png" class="figure-img img-fluid rounded" alt="object orientation in Frooble">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        A Frooble program demonstrating the object orientation and inheritance capabilities.
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> A Frooble program demonstrating the object orientation and inheritance capabilities.
                     </figcaption>
                 </figure>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <p>Static scoping is supported allowing local and global variables. Control flow is provided by while loops and for loops. Decisions 
                     are supported through if/else statements. Code reuse is allowed via functions, which also return values. Frooble programs are 
                     read ahead so functions can be called before they are defined, C like prototypes are therefore not required. Functions can also 
@@ -65,13 +66,13 @@ print "Hello, World!"
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <figure class="figure">
                     <a href="img/project-images/language-design-project/frooble-first-order-functions.png">
                         <img src="img/project-images/language-design-project/frooble-first-order-functions.png" class="figure-img img-fluid rounded" alt="Frooble functional programming example">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        Functional programming in Frooble. The identifier <var>x</var> is retrieved from the parameter list provided 
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Functional programming in Frooble. The identifier <var>x</var> is retrieved from the parameter list provided 
                         to <var>f</var>. <var>Incrementor</var> is a function that &lsquo;adds 5 to something&rsquo;.
                     </figcaption>
                 </figure>
@@ -79,23 +80,20 @@ print "Hello, World!"
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <figure class="figure">
                     <a href="img/project-images/language-design-project/frooble-recursion.png">
                         <img src="img/project-images/language-design-project/frooble-recursion.png" class="figure-img img-fluid rounded" alt="Recursion in Frooble">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        <dl>
-                            <dt>Recursion:</dt>
-                            <dd>See Recursion</dd>
-                        </dl>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> <span style="font-weight: bold;">Recursion:</span> See Recursion 🙄
                     </figcaption>
                 </figure>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <p>I wanted Frooble to be able to communicate easily with the outside world, any useful programming language does not exist in isolation. 
                     Frooble can communicate with C/C++ through the <abbr title="Java Native Interface">JNI</abbr>, allowing easy access to an already 
                     available standard library. Frooble can export symbols for use in other languages, for example the Python interpreter can be embedded, 
@@ -121,13 +119,13 @@ print "The weather in " + city + " is " + weather.description + " with a tempera
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <figure class="figure">
                     <a href="img/project-images/language-design-project/frooble-method-declaration-grammar-tree.png">
                         <img src="img/project-images/language-design-project/frooble-method-declaration-grammar-tree.png" class="figure-img img-fluid rounded" alt="example ANTLR grammar tree">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        ANTLR grammar tree for a Frooble method declaration. Once the source code is parsed into a tree it can be walked to interpret the 
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> ANTLR grammar tree for a Frooble method declaration. Once the source code is parsed into a tree it can be walked to interpret the 
                         instructions. The instructions can be implemented in any other language, usually a lower level language such as machine code, but in 
                         this case Java is used for simplicity.
                     </figcaption>
@@ -136,7 +134,7 @@ print "The weather in " + city + " is " + weather.description + " with a tempera
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <p>This project, although a challenge, was very rewarding. It completed a lot of gaps in my knowledge in terms of how programming 
                     languages have evolved and why there are so many of them. In the early years of learning to program you are never really told 
                     why languages are constructed how they are. It is not until you try and create your own that you can get an appreciation for 

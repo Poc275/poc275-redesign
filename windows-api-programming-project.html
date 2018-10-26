@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
     <title>Windows API Programming Project</title>
   </head>
@@ -20,13 +21,12 @@
             <p><span title="Date">📅</span> January 2010 &dash; May 2010</p>
             <p><span title="Built With">🔨</span> C</p>
             <p><span title="Tools Used">🔧</span> Win32 API</p>
-            <!-- <p><span title="Link">🔗</span><a href="https://github.com/Poc275/top-heroes" target="_blank"> GitHub</a></p> -->
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <h3>Comparison of communication between threads and processes using the Windows API</h3>
                 <p>The idea of this particular application was to try and prove some of the theory that had been taught in an operating systems 
                     module, specifically, the timing differences between <abbr title="Inter-process communication">IPC</abbr> and 
@@ -41,20 +41,20 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <figure class="figure">
                     <a href="img/project-images/windows-api-programming-project/interprocess-communication.png">
                         <img src="img/project-images/windows-api-programming-project/interprocess-communication.png" class="figure-img img-fluid rounded" alt="producer and consumer programs">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        IPC screenshot showing producer and consumer programs.
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> IPC screenshot showing producer and consumer programs.
                     </figcaption>
                 </figure>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <p>For the consumer to be able to read the producer's starting time, a memory mapped file was created to enable 
                     both processes to communicate:</p>
                 <pre class="prettyprint">
@@ -120,20 +120,20 @@ time = (double)(end.QuadPart - memShare->startTime.QuadPart) / (double)freq.Quad
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <figure class="figure">
                     <a href="img/project-images/windows-api-programming-project/ipc-vs-itc-timings-chart.png">
                         <img src="img/project-images/windows-api-programming-project/ipc-vs-itc-timings-chart.png" class="figure-img img-fluid rounded" alt="producer and consumer programs">
                     </a>
-                    <figcaption class="figure-caption text-right">
-                        Overall timing results, the mean shows IPC, surprisingly, is slightly faster than ITC.
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Overall timing results, the mean shows IPC, surprisingly, is slightly faster than ITC.
                     </figcaption>
                 </figure>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-6">
                 <p>Although this wasn’t my first taste of C programming (if it's yours then you absolutely must start with 
                     <a href="https://www.amazon.co.uk/C-Programming-Language-2nd/dp/0131103628" target="_blank">this book</a>), 
                     it was my first attempt at programming for Windows. This proved to be very different from other programming I had done 

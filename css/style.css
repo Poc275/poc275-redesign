@@ -372,6 +372,7 @@ a:hover {
     color: #fff;
     display: inline-block;
     padding: 0 0 0 1rem;
+    margin-right: 0; /* prevents title from overflowing and showing a horizontal scroll bar */
 }
 
 /* on larger screens (md) pad out the title */
