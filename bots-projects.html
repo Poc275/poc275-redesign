@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <title>Bots Projects</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="bots-projects-header">
+        <div class="row project-title">
+            <h1>Bots</h1>
+            <p><span title="Date">📅</span> April 2017 &dash; Current</p>
+            <p><span title="Built With">🔨</span> C# | JavaScript</p>
+            <p><span title="Tools Used">🔧</span> <a href="https://dev.botframework.com/" target="_blank">Bot Framework</a> | <a href="https://www.luis.ai/" target="_blank">LUIS</a></p>
+            <p><span title="Link">🔗</span><a href="https://www.facebook.com/housewrk/" target="_blank"> Housewrk</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Back in April 2017 I attended the <a href="https://dotnetsheff.co.uk/" target="_blank">dotnetsheff</a> 
+                    <a href="https://www.meetup.com/dotnetsheff/events/234854191" target="_blank">meetup talk on chatbots</a> by the excellent 
+                    <a href="https://blogs.blackmarble.co.uk/jmann/" target="_blank">James Mann from Black Marble</a>. His passion and knowledge 
+                    meant I walked away from the talk desperate to try and create my own bots!</p>
+
+                <h2>Acrobot</h2>
+                <p>As I was leaving the talk a friend suggested a great use case for a bot &dash; acronyms. Often the curse of most people’s work lives 
+                    where you’re expected to know what they mean and are thrown about with abandon by people trying to sound intelligent. Well, no more!</p>
+
+                <p>Imagine sitting in a meeting and you hear an acronym, now you can simply take out your phone and get an explanation in seconds.</p>
+
+                <p>The bot was created using the Bot Framework C# SDK and uses LUIS for the language recognition.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/bots-projects/acrobot.png">
+                        <img src="img/project-images/bots-projects/acrobot.png" class="figure-img img-fluid rounded" alt="acrobot screenshot">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Acrobot screenshot.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>LUIS</h3>
+                <p>LUIS is a great option if you want a more conversational bot as opposed to the Q and A type bots. With LUIS you can teach language 
+                    understanding which your bot can utilise to interpret user intents through the use of natural language. LUIS is broken down as follows:</p>
+
+                <h4>Intents</h4>
+                <p>These are the verbs or actions that you expect users will want to perform. For Acrobot these are find, create and help.</p>
+
+                <h4>Utterances</h4>
+                <p>These are the messages that you expect a user will send to your bot. You can then assign them to a specific intent. For Acrobot an example 
+                    would be &ldquo;What does TLA stand for?&rdquo; which would be assigned to the search intent. You can keep adding utterances to train a 
+                    better model and LUIS actively learns as it receives more messages which you can check and retrain if necessary.</p>
+
+                <h4>Entities</h4>
+                <p>These are the nouns that you want to extract from utterances. For Acrobot we need to extract the acronym if a user is searching, or the 
+                    definition and acronym if the user is creating a new acronym. You highlight portions of an utterance and assign it to an entity. LUIS 
+                    provides built-in entities for common intents like booking, ordering, reserving etc. For Acrobot we used a regular expression entity 
+                    to recognise a collection of 3 or more letters as an acronym. For definitions we just had to train the model so it could eventually recognise 
+                    that anything after &ldquo;TLA stands for&hellip;&rdquo; was the definition. This demonstrated the power of LUIS, give it enough data and 
+                    it will eventually understand.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/bots-projects/luis-entities.jpg">
+                        <img src="img/project-images/bots-projects/luis-entities.jpg" class="figure-img img-fluid rounded" alt="creating entities in LUIS">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Defining entities in the LUIS dashboard. LUIS has identified &lsquo;MOC&rsquo; as an 
+                        acronym entity and has correctly assigned it to the find intent with a 96% confidence.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>LUIS exposes an endpoint which you can call with an utterance to receive an intent. Intents are scored based on the confidence 
+                    the model has. Your bot can then act on the intent, receive any extracted entities and respond as necessary.</p>
+
+                <p>The bot has been rolled out across my company and receives around 100 hits per day. The bot utilises the Web Chat channel (Bot 
+                    Framework bots can be integrated across multiple channels such as Slack, Facebook Messenger, Twitter etc. to reach more people) which 
+                    means users can simply navigate to a web page to use the bot.</p>
+
+                <h2>Housewrk</h2>
+                <p>Housewrk is a start up I’m involved in with my good friend <a href="https://www.faizanpatankar.com/" target="_blank">Faizan Patankar</a>. 
+                    He had an issue where he couldn’t book a cleaner without going through agencies which was a long, drawn out process. Instead why 
+                    not connect cleaners and customers directly?</p>
+
+                <p>Most cleaners advertise online, Facebook especially, so a Facebook chatbot was created. The bot asks questions about what is required 
+                    (property type, number of rooms, etc.) to calculate a price. The request can then be sent to cleaners who have registered with us so 
+                    they can respond and take the job.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <video controls="controls">
+                        <source src="vid/housewrk.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                    </video>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-video"></i> Housewrk conversation flow.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Tips</h2>
+                <p>Some useful tips I picked up during development of my own bots which may be useful:</p>
+
+                <ul>
+                    <li>Introduce the bot as a bot so the user knows it isn’t a human. I was obsessed at the beginning believing 
+                        that it should somehow fool the user into thinking it was a human at the other end for a better experience, but this 
+                        just raises the user’s expectations too far so when the inevitable misunderstandings or limitations are reached, the user’s 
+                        confidence is destroyed.</li>
+
+                    <li>Introduce what the bot can do and provide suggestions. An empty text prompt again raises users’ expectations as they believe 
+                        they can type anything and get a response.</li>
+
+                    <li>Provide a navigation method for all of the &lsquo;tasks&rsquo; a bot can perform. A chatbot is in effect a slimmed down app. 
+                        The idea being that a chat interface is going to be familiar and intuitive but most apps will need some form of navigation and 
+                        bots should be no different.</li>
+
+                    <li>Light data consumption and low text input are key as most users will be on a mobile device.</li>
+
+                    <li>Favour short and snappy interactions.</li>
+
+                    <li>User stories can really help define the conversation flows. Couple with personas to try and accomplish specific tasks in your 
+                        bot to develop better flows. These can then be fleshed out into views, buttons, commands etc.</li>
+
+                    <li>One of the hardest parts to get right is context switching. Humans do this all the time but bots just cannot do this easily, if 
+                        at all. Try and listen for keywords to see if the user is changing the topic of the conversation. Ideally, these should then 
+                        become your navigation options.</li>
+
+                    <li>Plan the navigation options as a flow chart and identify the keywords that switch between them. Some of the 
+                        <a href="https://withplum.com/" target="_blank">best bots</a> I have seen hardly let the user type any free text and instead 
+                        only provide them with these navigation options to interact with the bot.</li>
+
+                    <li>Favour closed-ended questions e.g. multiple choice, yes/no etc.</li>
+
+                    <li>If it must be an open-ended question then provide a hint as to what response is expected.</li>
+
+                    <li>For local development make use of the <a href="https://github.com/Microsoft/BotFramework-Emulator/releases" target="_blank">Bot 
+                        Framework Emulator</a> to debug your bots. For debugging a bot that has been deployed, use <a href="https://ngrok.com/" target="_blank">
+                        ngrok</a> to <a href="https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-(ngrok)" target="_blank">make a bridge between 
+                        the bot and bot framework emulator</a>.</li>
+
+                    <li>Make use of the <a href="https://docs.botframework.com/en-us/channel-inspector/channels/Skype/" target="_blank">Channel Inspector</a> 
+                        to see which different UI elements are available and how the look across different channels.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
