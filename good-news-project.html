@@ -21,7 +21,7 @@
             <p><span title="Date">📅</span> April 2018 &dash; Current</p>
             <p><span title="Built With">🔨</span> C# | Python</p>
             <p><span title="Tools Used">🔧</span> .NET Core | Azure Functions | <a href="https://orange.biolab.si/" target="_blank">Orange</a></p>
-            <p><span title="Link">🔗</span><a href="http://goodnws.azurewebsites.net/" target="_blank">Live</a> | <a href="https://github.com/Poc275/GoodNews" target="_blank"> GitHub</a></p>
+            <p><span title="Link">🔗 </span><a href="http://goodnws.azurewebsites.net/" target="_blank">Live</a> | <a href="https://github.com/Poc275/GoodNews" target="_blank"> GitHub</a></p>
             <p><span title="Background image by">📷</span> (Background image by <a href="https://unsplash.com/@brandenharvey" target="_blank">Branden Harvey on Unsplash</a>)</p>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     programme through my workplace that offered the chance to study Data Science modules part-time at your own pace with a chance to 
                     complete an MSc if enough modules were completed. The module in question was &lsquo;Understanding Data&rsquo; which was an introductory module 
                     aimed to convey a high level of understanding of the data analytics process. The final assessment was to use the techniques 
-                    described in the module to solve a business problem.</p>
+                    described in the module to solve a business problem of my own choosing.</p>
 
                 <h2>The problem</h2>
                 <p>The world of online news is getting a lot of attention. Recent political unrest has been blamed on the rise of fake news and 
@@ -64,10 +64,8 @@
                     is to state the aim of the analysis at the outset. All workflows begin with a business understanding step, which enforces a clear 
                     phrasing of the question that is to be answered.</p>
 
-                <p>The Data Science process (CS109) was chosen. It is a functional work process with clearly defined goals at each step whilst at 
-                    the same time not being too prescriptive in terms of what you need to do. This seems an ideal framework as the question at this 
-                    stage is about the possibility of reaching a result, rather than a specific result itself. The non-linear aspect to this process 
-                    also makes it the ideal candidate. As the initial question becomes better understood as we become more familiar with the data, we 
+                <p>The Data Science process (CS109) was chosen. It is a functional work process with clearly defined goals at each step. The non-linear 
+                    aspect to this process makes it the ideal candidate. As the initial question becomes better understood as we become more familiar with the data, we 
                     can skip back to previous steps and try a different modelling approach to iterate through the process to achieve a better insight.</p>
             </div>
         </div>
@@ -113,13 +111,13 @@
                     good and bad news. Studies that have tried to address the problem of negative news have come closer to answering this. They reveal 
                     that it is not necessarily the subject of the story that makes it good or bad, but the language used within it 
                     <cite><a href="#references">(Gyldensted, 2011)</a></cite>. A high negative word ratio and a &ldquo;victim narrative&rdquo; identify 
-                    strongly as negative news stories, whereas factors such as having a higher positive word ratio (around 3:1 
-                    <cite><a href="#references">(Fredrickson & Losada, 2005)</a></cite>), having a positive message at the peak and end of a story (the peak-end 
-                    rule <cite><a href="#references">(Kahneman, et al., 1993)</a></cite>), and a meaningful narrative can identify a story as a positive one. 
-                    This backs up our approach of scanning the content of the article for a sentiment score.</p>
+                    strongly as negative news stories, whereas factors such as having a higher positive word ratio (around 3:1) 
+                    <cite><a href="#references">(Fredrickson & Losada, 2005)</a></cite>, having a positive message at the peak and end of a story (the peak-end 
+                    rule) <cite><a href="#references">(Kahneman, et al., 1993)</a></cite>, and a meaningful narrative can identify a story as a positive one. 
+                    This enforces our approach of scanning the content of the article for a sentiment score.</p>
 
                 <h2>Get</h2>
-                <p>The next stage of the process is to gather data that can help answer the question identified previously. There didn’t appear to be any readily 
+                <p>The next stage of the process is to gather data that can help answer the question. There didn’t appear to be any readily 
                     available data on news article sentiment. Most research in this area has focused on improving sentiment analysis algorithms. The current political 
                     climate has diverted attention to the 
                     <a href="https://towardsdatascience.com/i-trained-fake-news-detection-ai-with-95-accuracy-and-almost-went-crazy-d10589aa57c" target="_blank">
@@ -141,7 +139,7 @@
                         <img src="img/project-images/good-news-project/news-source-ideologies.png" class="figure-img img-fluid rounded" alt="ideologies of online news sources">
                     </a>
                     <figcaption class="figure-caption text-left">
-                        <i class="fas fa-camera"></i> Ideological Placement of online news sources <cite>(Pew Research Center, 2014)</cite>.
+                        <i class="fas fa-camera"></i> Ideological Placement of online news sources <cite><a href="#references">(Pew Research Center, 2014)</a></cite>.
                     </figcaption>
                 </figure>
             </div>
@@ -163,7 +161,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <p>Based on the figures above, to represent the full political spectrum the following sites were chosen:</p>
+                <p>Based on the figures above, to represent the full political spectrum the following sources were selected:</p>
 
                 <ul>
                     <li>The Guardian &dash; left wing</li>
@@ -175,8 +173,8 @@
                 </ul>
 
                 <p>One of the aims of the analysis from the outset was to see if good news is available, just not reported. Many online news sites 
-                    get their stories from news agencies like Reuters, which is why it is included. If Reuters sentiment is higher than the other s
-                    ites then we can potentially answer this question.</p>
+                    get their stories from news agencies like Reuters, which is why it is included. If Reuters sentiment is higher than the other 
+                    sites then we can potentially answer this question.</p>
 
                 <h3>Sentiment Analysis</h3>
                 <p>From the content a sentiment analysis score will need to be obtained. Most major cloud computing companies offer a sentiment 
@@ -192,7 +190,7 @@
                     just with good news itself. Also, the lack of any existing data, and the time required to create manually, meant that some sort of automation 
                     was required to gather the data.</p>
 
-                <p>An automated data pipeline was created using the Microsoft Azure cloud. The use of Azure Functions means that small scripts can be set 
+                <p>An automated data pipeline was created using the Microsoft Azure cloud. The use of Azure Functions means that scripts can be set 
                     to run on a timer. The retrieval of news articles from the RSS feeds and retrieval of sentiment scores can be separated into their own 
                     Azure Functions and set to run at a specific time interval. A news fetch function runs once every hour and inserts new stories into a 
                     database. A sentiment analysis function then runs every five minutes, gets the next row in the database without a sentiment score, 
@@ -445,13 +443,13 @@
         <div class="row">
             <div class="col-md-6">
                 <p>The next stage was to investigate the relationship between variable’s relationships. A scatter plot matrix is a good plot to get an 
-                    overall idea of this. What is striking about this plot is the groupings. It seems we have very distinct groupings of articles emotions, 
+                    overall idea of this. What is striking about this plot is the groupings. It seems we have very distinct groupings of emotions, 
                     which seem to come in four different groups. Sentiment is different, we see two distinct groups. The histograms of the emotion 
                     variables (joy, anger, disgust, sadness and fear) show that emotions tend to be at one extreme or the other, with not a lot in between, 
                     hence the two distinct groupings. As sentiment becomes more positive, the negative emotions like fear, sadness, disgust and anger reduce, 
-                    but the opposite happens for joy, which as a positive emotion makes sense. The emotion histograms however seem to be telling us that our 
+                    but the opposite happens for joy, which as a positive emotion, makes sense. The emotion histograms however seem to be telling us that our 
                     initial hypothesis about news being negative and fear mongering isn’t perhaps quite the case. Fear, disgust and anger are skewed towards 
-                    zero, and joy skewed in the other direction. Sadness is the only emotion that seems to back up our hypothesis. The conclusion at this stage 
+                    zero, and joy is skewed in the other direction. Sadness is the only emotion that seems to back up our hypothesis. The conclusion at this stage 
                     seems to be that although the overall sentiment of the majority of news is negative, the journalists weave a narrative, conveying the full 
                     gamut of human emotions.</p>
 
@@ -655,7 +653,7 @@
                 <p>Unsupervised learning, where we’ve looked to algorithms to identify clustering of good news for us, hasn’t resulted in a satisfactory 
                     outcome. Therefore, it is necessary to build a model ourselves. To be able to train and test a model we need to add a label to the 
                     dataset which indicates whether an article is good news or bad news. This brings us into supervised learning territory. An extra variable 
-                    was added to the dataset called &lsquo;Good_News&rsquo; that is set to either yes or no, this is our &lsquo;target&rsquo; variable that we 
+                    was added to the dataset called &lsquo;Good_News&rsquo; that is set to either yes or no. This is our &lsquo;target&rsquo; variable that we 
                     want to use a model to predict.</p>
 
                 <p>Before a model was created, I wondered if that now we have a labelled dataset, would any clusters emerge from our PCA analysis carried out 
@@ -698,7 +696,7 @@
                     &lsquo;follows&rsquo; the data and doesn’t generalise well to new data that it hasn't seen before.</p>
 
                 <h4>Validate the model</h4>
-                <p>Once the logistic regression model was built from the training data, we can use it to make predictions on the test data and compare 
+                <p>Once the logistic regression model was built from the training data, we use it to make predictions on the test data and compare 
                     the labels to see how accurate it is. A confusion matrix (see below) is then produced to help us visualise the performance of a 
                     classification model like logistic regression.</p>
             </div>
@@ -756,7 +754,7 @@
                     </tbody>
                 </table>
 
-                <p>We can glean quite a lot of information from a confusion matrix, specifically:</p>
+                <p>We can glean quite a lot of information from a confusion matrix:</p>
 
                 <ul>
                     <li>Accuracy: (TP + TN) / Total = (16 + 2302) / 2341 = <span style="font-weight: bold;">0.99</span></li>
@@ -774,8 +772,8 @@
 
                 <h4>Cross-validation</h4>
                 <p>With a scarcity of good news articles in the labelled dataset (around 1% of the total), maybe cross-validation can improve the accuracy 
-                    of the model. This is a technique where the training set is split into k smaller sets, and for each of the k &lsquo;folds&rsquo; a model is 
-                    trained using k – 1 of the folds as training data, and the resulting model is validated on the remaining part of the data held back. The 
+                    of the model. This is a technique where the training set is split into <var>k</var> smaller sets, and for each of the <var>k</var> &lsquo;folds&rsquo; 
+                    a model is trained using <var>k – 1</var> of the folds as training data, and the resulting model is validated on the remaining part of the data held back. The 
                     final model performance measure is then the average of the values of each &lsquo;folds&rsquo;. The advantage being the entire dataset is used 
                     to train and test and each observation is used for testing exactly once. This could give the logistic regression model more visibility of 
                     good news articles and help improve the predictions.</p>
@@ -1044,7 +1042,7 @@
                 <p>To return to our original question, 	&ldquo;Can online news be separated into good news, that is a news story with a positive sentiment, and 
                     bad news, which is a news story with a negative sentiment?&rdquo;, we conclude that yes, it is possible, but with a major caveat.</p>
 
-                <p>Our models have shown a good accuracy in finding bad news but haven’t performed well for good news articles. This shows that while a model 
+                <p>Our models have been accurate in predicting bad news but haven’t performed well for good news articles. This shows that while a model 
                     can be built to classify articles, most good news stories will be incorrectly classified as bad news, leaving only a very small sample of good 
                     news to filter through. This is the major caveat as this means only a small supply of good news articles for the site will be available, and 
                     they will tend to be lighter in terms of content i.e. they tend to be on the trivial side of the news, as opposed to more informative news 
@@ -1144,7 +1142,7 @@
                 <h2>The Good News Web Site</h2>
                 <p>The data exists as a SQL Server database hosted in Azure. A .NET core application was created which uses Entity Framework Core as the data 
                     layer. Due to the lack of definitive results produced by the models, a model has not been productionised. Instead, the application simply 
-                    uses a threshold value to return high sentiment score articles.</p>
+                    uses threshold values to return high sentiment and positive emotion articles.</p>
 
                 <h2>Good News 2.0</h2>
                 <p>To try and rectify this issue I’m currently collecting more data and doing some feature engineering to try and create a better training 

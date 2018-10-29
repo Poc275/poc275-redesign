@@ -20,8 +20,8 @@
             <h1>Bots</h1>
             <p><span title="Date">📅</span> April 2017 &dash; Current</p>
             <p><span title="Built With">🔨</span> C# | JavaScript</p>
-            <p><span title="Tools Used">🔧</span> <a href="https://dev.botframework.com/" target="_blank">Bot Framework</a> | <a href="https://www.luis.ai/" target="_blank">LUIS</a></p>
-            <p><span title="Link">🔗</span><a href="https://www.facebook.com/housewrk/" target="_blank"> Housewrk</a></p>
+            <p><span title="Tools Used">🔧 </span> <a href="https://dev.botframework.com/" target="_blank">Bot Framework</a> | <a href="https://www.luis.ai/" target="_blank">LUIS</a></p>
+            <p><span title="Link">🔗 </span><a href="https://www.facebook.com/housewrk/" target="_blank">Housewrk</a></p>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>LUIS</h3>
-                <p>LUIS is a great option if you want a more conversational bot as opposed to the Q and A type bots. With LUIS you can teach language 
+                <p>LUIS is a great option if you want a more conversational bot as opposed to a simpler Q and A type bot. With LUIS you can teach language 
                     understanding which your bot can utilise to interpret user intents through the use of natural language. LUIS is broken down as follows:</p>
 
                 <h4>Intents</h4>
@@ -67,16 +67,16 @@
 
                 <h4>Utterances</h4>
                 <p>These are the messages that you expect a user will send to your bot. You can then assign them to a specific intent. For Acrobot an example 
-                    would be &ldquo;What does TLA stand for?&rdquo; which would be assigned to the search intent. You can keep adding utterances to train a 
+                    would be &ldquo;What does TLA stand for?&rdquo; which would be assigned to the find intent. You can keep adding utterances to train a 
                     better model and LUIS actively learns as it receives more messages which you can check and retrain if necessary.</p>
 
                 <h4>Entities</h4>
-                <p>These are the nouns that you want to extract from utterances. For Acrobot we need to extract the acronym if a user is searching, or the 
-                    definition and acronym if the user is creating a new acronym. You highlight portions of an utterance and assign it to an entity. LUIS 
+                <p>These are the nouns that you want to extract from utterances. For Acrobot we need to extract the acronym and definition. 
+                    In the LUIS dashboard you highlight portions of an utterance and assign it to an entity. LUIS 
                     provides built-in entities for common intents like booking, ordering, reserving etc. For Acrobot we used a regular expression entity 
                     to recognise a collection of 3 or more letters as an acronym. For definitions we just had to train the model so it could eventually recognise 
-                    that anything after &ldquo;TLA stands for&hellip;&rdquo; was the definition. This demonstrated the power of LUIS, give it enough data and 
-                    it will eventually understand.</p>
+                    that anything after &ldquo;TLA stands for&hellip;&rdquo; or &ldquo;TLA means&hellip;&rdquo; was the definition. This demonstrated the 
+                    power of LUIS, give it enough data and it will eventually understand.</p>
             </div>
         </div>
 
@@ -99,9 +99,9 @@
                 <p>LUIS exposes an endpoint which you can call with an utterance to receive an intent. Intents are scored based on the confidence 
                     the model has. Your bot can then act on the intent, receive any extracted entities and respond as necessary.</p>
 
-                <p>The bot has been rolled out across my company and receives around 100 hits per day. The bot utilises the Web Chat channel (Bot 
+                <p>The bot has been rolled out across my company and has received great feedback getting around 100 hits per day. The bot utilises the Web Chat channel (Bot 
                     Framework bots can be integrated across multiple channels such as Slack, Facebook Messenger, Twitter etc. to reach more people) which 
-                    means users can simply navigate to a web page to use the bot.</p>
+                    means users can simply navigate to a web page to use it.</p>
 
                 <h2>Housewrk</h2>
                 <p>Housewrk is a start up I’m involved in with my good friend <a href="https://www.faizanpatankar.com/" target="_blank">Faizan Patankar</a>. 
@@ -129,20 +129,23 @@
 
         <div class="row">
             <div class="col-md-6">
+                <p>The product is still in progress. The initial chat bot is complete and has been approved by Facebook. We’re currently working 
+                    on the next stage of the workflow, connecting customers and cleaners, so if you need a cleaner, keep checking back for updates!</p>
+
                 <h2>Tips</h2>
-                <p>Some useful tips I picked up during development of my own bots which may be useful:</p>
+                <p>Some useful tips I picked up during development of my own bots which may prove useful:</p>
 
                 <ul>
                     <li>Introduce the bot as a bot so the user knows it isn’t a human. I was obsessed at the beginning believing 
                         that it should somehow fool the user into thinking it was a human at the other end for a better experience, but this 
-                        just raises the user’s expectations too far so when the inevitable misunderstandings or limitations are reached, the user’s 
+                        just raises users' expectations too far so when the inevitable misunderstandings or limitations are reached, the user’s 
                         confidence is destroyed.</li>
 
                     <li>Introduce what the bot can do and provide suggestions. An empty text prompt again raises users’ expectations as they believe 
-                        they can type anything and get a response.</li>
+                        they can type anything and get a sensible response.</li>
 
                     <li>Provide a navigation method for all of the &lsquo;tasks&rsquo; a bot can perform. A chatbot is in effect a slimmed down app. 
-                        The idea being that a chat interface is going to be familiar and intuitive but most apps will need some form of navigation and 
+                        The idea being that a chat interface is going to be familiar and intuitive but most apps will require some form of navigation and 
                         bots should be no different.</li>
 
                     <li>Light data consumption and low text input are key as most users will be on a mobile device.</li>
@@ -157,8 +160,8 @@
                         become your navigation options.</li>
 
                     <li>Plan the navigation options as a flow chart and identify the keywords that switch between them. Some of the 
-                        <a href="https://withplum.com/" target="_blank">best bots</a> I have seen hardly let the user type any free text and instead 
-                        only provide them with these navigation options to interact with the bot.</li>
+                        <a href="https://withplum.com/" target="_blank">best bots</a> I have seen hardly let the user type any free text at all, instead,  
+                        they only provide them with navigation options to switch context.</li>
 
                     <li>Favour closed-ended questions e.g. multiple choice, yes/no etc.</li>
 
@@ -170,7 +173,7 @@
                         the bot and bot framework emulator</a>.</li>
 
                     <li>Make use of the <a href="https://docs.botframework.com/en-us/channel-inspector/channels/Skype/" target="_blank">Channel Inspector</a> 
-                        to see which different UI elements are available and how the look across different channels.</li>
+                        to see which different UI elements are available and how they look across different channels.</li>
                 </ul>
             </div>
         </div>
