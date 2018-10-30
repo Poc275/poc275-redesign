@@ -307,6 +307,18 @@ a:hover {
     url('../img/project-items-grid/classified-adverts-php-web-app.png');
 }
 
+#database-design-project {
+    background-image: url('../img/project-items-grid/database-design-front-end.png');
+}
+
+#database-design-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/database-design-front-end.png');
+}
+
 
 .overlay {
     transition: 0.5s ease;
@@ -512,6 +524,15 @@ a:hover {
             rgba(12, 16, 28, 0.65) 65%,
             rgba(12, 16, 28, 0.65) 66%),
         url('../img/backgrounds/classified-adverts-php-web-app.png') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+#database-design-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/database-design-front-end.png') no-repeat 50% 0 fixed;
     background-size: cover;
 }
 

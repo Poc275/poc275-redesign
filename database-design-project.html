@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <title>Classified Adverts Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="database-design-project-header">
+        <div class="row project-title">
+            <h1>Database Design</h1>
+            <p><span title="Date">📅</span> September 2011 &dash; December 2011</p>
+            <p><span title="Built With">🔨</span> C# | SQL Server</p>
+            <p><span title="Tools Used">🔧 </span> ASP.Net</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>The aim of this project was to design a multi-user database system for an online shoe store.</p>
+
+                <p>The first step was to identify the entities, relationships and attributes by analysing the project brief. The entities are the things 
+                    of significance about which information needs to be known, such as shoes, customers and orders. Relationships explain how the entities
+                     are related (one to one, one to many), and the attributes contain specific information about the entities, such as shoe types, gender and 
+                     payment method. The result of this is a conceptual entity relationship diagram, which is a first attempt at modelling the database.</p>
+
+                <p>The next step is to break down any many to many relationships as these cannot be represented by a relational database. The conceptual diagram 
+                    had a many to many relationship between &lsquo;order&rsquo; and &lsquo;stock&rsquo; i.e. each stock item may be bought via one or many order/s, 
+                    and each order must be issued for one or many item/s of stock. A weak entity called &lsquo;order detail&rsquo; was created to break this 
+                    relationship down. Now each order must contain one or many order detail/s, and each order detail must relate to only one order (a one to many 
+                    relationship). Each stock item may be bought via one or many order detail/s, and each order detail must order only one stock item (also a 
+                    one to many relationship). This is depicted in the logical entity relationship diagram.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/database-design-project/logical-entity-relationship-diagram.png">
+                        <img src="img/project-images/database-design-project/logical-entity-relationship-diagram.png" class="figure-img img-fluid rounded" alt="final logical entity relationship diagram">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> The final logical entity relationship diagram. The underlined attributes signify the primary key for 
+                        the entity i.e. the attribute that uniquely identifies each record. The suffix (fk) refers to a foreign key. This is 
+                        required to implement the relationships between the entities.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">                   
+                <p>The normalisation process was next. This is required to minimise data redundancy which causes integrity problems. Update and delete 
+                    transactions may not be consistently applied to all copies of the data causing inconsistencies. Normalisation was carried out up to 
+                    <a href="https://en.wikipedia.org/wiki/Third_normal_form" target="_blank">Third Normal Form (3NF)</a>. 
+                    This helped identify three more entities that were previously missed. A data dictionary was then produced to identify all of the data types 
+                    for the attributes. The model was now in a suitable state for it to be created in an actual <abbr title="Database Management System">DBMS</abbr>. 
+                    MySQL (later migrated to SQL Server) was chosen for this as it is a widely used and readily available DBMS. The physical entity relationship 
+                    model depicts the MySQL database.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/database-design-project/physical-entity-relationship-diagram-in-mysql.png">
+                        <img src="img/project-images/database-design-project/physical-entity-relationship-diagram-in-mysql.png" class="figure-img img-fluid rounded" alt="physical entity relationship diagram">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> MySQL physical entity relationship diagram.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">                   
+                <p>A front end was then created using PHP to test the database. To accomplish this a navigation map was produced by applying use case 
+                    scenarios to the system to identify all of the pages that are required, which tables and attributes are required, whether the page is 
+                    static or dynamic, public or private, and if the page requires read or write permissions on the database. The idea is that a front 
+                    end developer can pick this up and have an immediate overview of how to put the site together. It is also often shown to business 
+                    managers for approval.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/database-design-project/front-end-navigation-map.png">
+                        <img src="img/project-images/database-design-project/front-end-navigation-map.png" class="figure-img img-fluid rounded" alt="front end navigation map">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Front end navigation map.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">                   
+                <p>A second version of the system was created using SQL Server and ASP.Net. This combination of open source and proprietary systems 
+                    provided a broad appreciation of the available DBMS that exist in the industry and reinforced the strength of the design as it was 
+                    easily portable to another set of technologies.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/database-design-project/sql-server-asp_net-home-page.png">
+                        <img src="img/project-images/database-design-project/sql-server-asp_net-home-page.png" class="figure-img img-fluid rounded" alt="front end view in asp.net using sql server">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> SQL Server/ASP.Net home page.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
