@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <title>Classified Adverts Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="classified-ads-project-header">
+        <div class="row project-title">
+            <h1>Classified Adverts Web App</h1>
+            <p><span title="Date">📅</span> January 2011 &dash; May 2011</p>
+            <p><span title="Built With">🔨</span> PHP | MySQL</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>This project was part of a web server programming module that taught server-side programming techniques and related subjects such as HTTP, 
+                    HTML forms, N-Tier architecture and database access. A classified adverts web application for an online newspaper was developed to demonstrate 
+                    all of these techniques. The site required the following features:</p>
+
+                <ul>
+                    <li>Any public user can view all of the advertisements without needing to log on.</li>
+                    <li>Only subscribed users can place new advertisements.</li>
+                    <li>A search facility is required.</li>
+                    <li>Adverts past their expiry date should be automatically deleted.</li>
+                    <li>An administration facility is required that enables a site administrator to reset passwords, delete users and edit or remove advertisements.</li>
+                </ul>
+
+                <p>The first task was to design the database, this was done using entity-relationship modelling techniques and normalisation. The database was 
+                    created using MySQL. As this was a reasonably complex application, with a lot of use cases, a lot of thought had to be put into the design. I 
+                    had noticed how complex PHP code can become when it is intertwined within HTML. You end up with a lot of little &lsquo;islands&rsquo; of PHP 
+                    amongst the HTML which is difficult to maintain and doesn't enable team working between programmer and designer.</p>
+
+                <p>An <abbr title="Model-View-Controller">MVC</abbr> architecture is one way of circumventing this issue. A lot of MVC frameworks are available 
+                    but I wanted to come up with my own design to gain a deeper understanding. I sketched out some use case scenarios to picture how people would 
+                    interact with the site. This then helped me come up with the required pages.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/classified-adverts-project/use-case-scenario-for-site-login.png">
+                        <img src="img/project-images/classified-adverts-project/use-case-scenario-for-site-login.png" class="figure-img img-fluid rounded" alt="use case for logging in">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Use case scenario for the login part of the application. Maps like this were created for all use 
+                        case scenarios to aid with the MVC design.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">                   
+                <p>The final design incorporated a controller class which acts as the 
+                    first point of contact for the application, directing user input to the relevant places. A model class handles database interrogation. Database 
+                    information is then supplied to a relevant view page by the controller to show the information to the user. This approach ensures no overlap of 
+                    functionality, meaning the business logic can be kept in one place, away from the presentation and data. This also has the additional benefit 
+                    of allowing programmers, designers and database administrators to all work on the same project without conflict.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/classified-adverts-project/mvc-design-overview.png">
+                        <img src="img/project-images/classified-adverts-project/mvc-design-overview.png" class="figure-img img-fluid rounded" alt="mvc design overview">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Overview of the final MVC design highlighting the separation of concerns between programmer and designer.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">                   
+                <p>Once this skeleton architecture was in place it became simpler to incorporate all of the features into the site by extending the functions 
+                    of the controller and model classes, and adding the relevant views.</p>
+
+                <p>This was a very interesting project as it completed my understanding of web development, particularly HTTP features, HTML forms, N-Tier 
+                    architecture and state management (sessions and cookies). The MVC approach made me understand the importance of looking at the design of a 
+                    web-site before coding can begin. Particularly interesting were the security aspects involved in keeping a site free from attacks. Hidden 
+                    fields were not used, and parameterised queries were utilised to prevent SQL injection attacks. All user input was validated at the client side 
+                    using JavaScript to prevent any un-necessary server work, and output was sanitised to prevent <abbr title="Cross-site scripting">XSS</abbr>.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/classified-adverts-project/classified-adverts-php-web-app.png">
+                        <img src="img/project-images/classified-adverts-project/classified-adverts-php-web-app.png" class="figure-img img-fluid rounded" alt="home page view">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> App home page view.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>
