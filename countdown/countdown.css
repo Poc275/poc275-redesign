@@ -1,0 +1,39 @@
+td {
+    border: 2px solid black;
+    height: 150px;
+    width: 150px;
+    font-size: 100px;
+    background-color: #c0c0c0;
+    text-align: center;
+    vertical-align: central;
+    color: #fff;
+    
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    
+    cursor: move;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 50px 0;
+    padding: 0;
+}
+
+#results {
+    visibility: hidden;
+}
+
+canvas {
+    margin: 30px auto;
+    display: block;
+}
+
+#new-game-button {
+    float: right;
+}
