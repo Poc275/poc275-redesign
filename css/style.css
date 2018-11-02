@@ -319,6 +319,18 @@ a:hover {
     url('../img/project-items-grid/database-design-front-end.png');
 }
 
+#website-redesign-project {
+    background-image: url('../img/project-items-grid/website-redesign-project.png');
+}
+
+#website-redesign-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/website-redesign-project.png');
+}
+
 #countdown-project {
     background-image: url('../img/project-items-grid/countdown.png');
 }
@@ -545,6 +557,15 @@ a:hover {
             rgba(12, 16, 28, 0.65) 65%,
             rgba(12, 16, 28, 0.65) 66%),
         url('../img/backgrounds/database-design-front-end.png') no-repeat 50% 0 fixed;
+    background-size: cover;
+}
+
+#website-redesign-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/website-redesign-project.png') no-repeat 50% 0 fixed;
     background-size: cover;
 }
 
