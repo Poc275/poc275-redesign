@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> -->
+
+    <title>Mythos</title>
+
+    <style>
+        .grid {
+            stroke: #9A8B7A;
+            stroke-width: 1px;
+            fill: #CF7D1C;
+        }
+
+        .arc {
+            stroke: #9A8B7A;
+            fill: none;
+        }
+        .node {    
+            fill: #EBD8C1;
+            stroke: #9A8B7A; 
+            stroke-width: 1px;
+        }
+        circle.active {
+            fill: #FE9922;
+        }
+        path.active {
+            stroke: #FE9922;
+        }
+        circle.source {
+            fill: #93C464;
+        }
+        circle.target {
+            fill: #41A368;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <!-- <canvas width="800" height="600"></canvas> -->
+    <svg width="2000" height="2000"></svg>
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        d3.json("mythos.json").then(function(graph) {
+            var edgeHash = {};
+            graph.links.forEach(link => {
+                var id = link.source + "-" + link.target;
+                edgeHash[id] = link;
+            });
+
+            var matrix = [];
+            graph.nodes.forEach((source, a) => {
+                graph.nodes.forEach((target, b) => {
+                    var grid = {id: source.id + "-" + target.id, x: b, y: a, weight: 0};
+                    if(edgeHash[grid.id]) {
+                        grid.weight = edgeHash[grid.id].value;
+                    }
+                    matrix.push(grid);
+                });
+            });
+
+            console.log(matrix);
+
+            var svg = d3.select("svg");
+
+            d3.select("svg").append("g")
+                .attr("transform", "translate(50, 50)")
+                .attr("id", "adjacencyG")
+                .selectAll("rect")
+                .data(matrix)
+                .enter().append("rect")
+                .attr("class", "grid")
+                .attr("width", 5)
+                .attr("height", 5)
+                .attr("x", d => d.x * 5)
+                .attr("y", d => d.y * 5)
+                .style("fill-opacity", d => d.weight * .2);
+
+            d3.select("svg")
+                .append("g")
+                .attr("transform", "translate(50,45)")
+                .selectAll("text")
+                .data(graph.nodes)
+                .enter().append("text")
+                .attr("x", (d,i) => i * 5 + 17.5)
+                .text(d => d.name)
+                .style("text-anchor","middle")
+                .style("font-size","10px")
+		
+            d3.select("svg")
+                .append("g").attr("transform", "translate(45,50)")
+                .selectAll("text")
+                .data(graph.nodes)
+                .enter().append("text")
+                .attr("y",(d,i) => i * 5 + 17.5)
+                .text(d => d.name)
+                .style("text-anchor","end")
+                .style("font-size","10px")
+        });
+    
+    </script>
+  </body>
+</html>
