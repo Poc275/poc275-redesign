@@ -1,0 +1,188 @@
+#legend-col {
+    background-image: url('images/parthenon-transp-opacity.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: contain;
+}
+
+#legend {
+    fill: #c9c6c0;
+}
+
+.link-path-legend {
+    stroke: #c9c6c0;
+    fill: none;
+}
+
+.legend-colour-path {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.btn-group {
+    margin: 10px 0;
+}
+
+body {
+    /* background-color: #101420; */
+    color: #a8a394;
+    background: #2980b9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#mythos-chart {
+    text-align: center;
+    position: relative;
+}
+
+#mythos-chart canvas {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#mythos-chart svg {
+    z-index: 2;
+}
+
+/* labels */
+.olympian-name {
+    text-anchor: middle;
+    font-size: 16px;
+    fill: #c9c6c0;
+}
+
+.interesting-person-name {
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.olympian-roman-name {
+    text-anchor: middle;
+    font-size: 11px;
+    fill: #7e7b72;
+}
+
+.age-label {
+    text-anchor: end;
+    font-size: 14px;
+    fill: #7e7b72;
+}
+
+/* tooltip */
+.tooltip-wrapper {
+    font-size: 11px;
+    pointer-events: none;
+    text-anchor: middle;
+    text-shadow: 0 1px 4px #101420, 1px 0 4px #101420, -1px 0 4px #101420, 0 -1px 4px #101420;
+}
+
+.tooltip-name {
+    font-size: 14px;
+    fill: #c9c6c0;
+}
+
+.tooltip-title {
+    font-size: 11px;
+    fill: #7e7b72;
+}
+
+.tooltip-extra-info {
+    font-size: 11px;
+    fill: #7e7b72;
+}
+
+/* Axes */
+.axis {
+    font-family: inherit;
+}
+
+.axis line, .axis path {
+    stroke: none;
+}
+
+.axis text {
+    fill: #d2d2d2;
+    font-size: 14px;
+}
+
+/* hovering */
+.hoverRect {
+    fill: none;
+    pointer-events: all;
+}
+
+/* network */
+.link {
+    stroke: #d4d4d4;
+    fill: none;
+    opacity: 0.6;
+    stroke-width: 1.5px;
+    pointer-events: none;
+}
+
+.link-couple {
+    stroke-dasharray: 5,5;
+}
+
+.node {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* info window */
+.side-window {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #2C3E50;
+    color: #a8a394;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.side-window .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: #a8a394;
+}
+
+.side-window .close-btn:hover {
+    color: #514d42;
+}
+
+.side-window #pic {
+    height: 250px;
+    background: linear-gradient(to bottom, rgba(44, 62, 80, 0.22) 0%, rgba(44, 62, 80, 1) 100%), url('images/zeus.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.side-window #details {
+    position: relative;
+    top: -25px;
+    padding: 0 2em;
+    text-align: center;
+}
+
+.side-window #name {
+    /* text-align: center; */
+    font-weight: 600;
+}
+
+/* .side-window #roman-name,
+.side-window #god-of,
+.side-window #secondary-info,
+.side-window #bio-title {
+    text-align: center;
+} */
