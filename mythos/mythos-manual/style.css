@@ -188,7 +188,6 @@ body {
 
 .side-window #pic {
     height: 250px;
-    background: linear-gradient(to bottom, rgba(44, 62, 80, 0.22) 0%, rgba(44, 62, 80, 1) 100%), url('images/zeus.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -202,6 +201,5 @@ body {
 }
 
 .side-window #name {
-    /* text-align: center; */
     font-weight: 600;
 }

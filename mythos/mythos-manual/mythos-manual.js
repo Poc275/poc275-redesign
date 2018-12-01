@@ -117,7 +117,7 @@ var colourScale = d3.scaleLinear()
     .domain([0, 1, 2, 4, 6])
     .clamp(true);
 
-var hoverColours = ['#fd150b','#ffc33b', '#2970ac'].reverse();
+var hoverColours = ['#fd150b','#ffc33b', '#2dff57'].reverse();
 var colourScaleHover = d3.scaleLinear()
     .range(hoverColours)
     .domain([1, 2, 3])
@@ -298,7 +298,7 @@ Promise.all(promises).then(function(values) {
         linkedToId[d.source.id].push(d.target.id);
         linkedToId[d.target.id].push(d.source.id);
 
-        d.opacity = opacityScale(d.distance_to_olympian) * 0.1;
+        d.opacity = opacityScale(d.distance_to_olympian) * 0.2;
         d.sign = Math.random() > 0.5;
 
         // radius of link
@@ -473,7 +473,8 @@ function clearCanvas() {
 // information window functions
 function showPersonInfoWindow(person) {
     // complete placeholder with person's details
-    // document.getElementById('pic').style.backgroundImage = 'url(images/zeus.jpg)';
+    document.getElementById('pic').style.backgroundImage = 
+        'linear-gradient(to bottom, rgba(44, 62, 80, 0.22) 0%, rgba(44, 62, 80, 1) 100%), url(images/' + person.name + '.jpg)';
     document.getElementById('name').innerText = person.name === 'nan' ? '' : person.name;
     document.getElementById('god-of').innerText = person.god_of === 'nan' ? '' : 'God of: ' + person.god_of;
     document.getElementById('roman-name').innerText = person.roman_name === 'nan' ? '' : 'Roman name: ' + person.roman_name;
@@ -496,6 +497,7 @@ function showPersonInfoWindow(person) {
             break;
     }
 
+    // TODO - add this to the nodes dataset so this becomes unnecessary
     var home = '';
     switch(person.home_pos) {
         case 0:
