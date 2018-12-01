@@ -1,3 +1,16 @@
+/* Typography */
+@font-face {
+    font-family: Diogenes;
+    src: url('DIOGENES.ttf');
+}
+
+h1 {
+    font-family: 'Diogenes', 'Arial', 'sans-serif';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Legend */
 #legend-col {
     background-image: url('images/parthenon-transp-opacity.png');
     background-repeat: no-repeat;
@@ -23,12 +36,16 @@
     margin: 10px 0;
 }
 
+/* Main */
 body {
-    /* background-color: #101420; */
     color: #c9c6c0;
     background: #2980b9;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#main-title {
+    margin-top: 1em;
 }
 
 #mythos-chart {
@@ -201,5 +218,6 @@ body {
 }
 
 .side-window #name {
-    font-weight: 600;
+    /* font-weight: 600; */
+    margin-bottom: 0;
 }

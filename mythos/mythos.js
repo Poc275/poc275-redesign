@@ -476,8 +476,8 @@ function showPersonInfoWindow(person) {
     document.getElementById('pic').style.backgroundImage = 
         'linear-gradient(to bottom, rgba(44, 62, 80, 0.22) 0%, rgba(44, 62, 80, 1) 100%), url(images/' + person.name + '.jpg)';
     document.getElementById('name').innerText = person.name === 'nan' ? '' : person.name;
-    document.getElementById('god-of').innerText = person.god_of === 'nan' ? '' : 'God of: ' + person.god_of;
-    document.getElementById('roman-name').innerText = person.roman_name === 'nan' ? '' : 'Roman name: ' + person.roman_name;
+    document.getElementById('god-of').innerText = person.god_of === 'nan' ? '' : 'God of ' + person.god_of;
+    document.getElementById('roman-name').innerHTML = person.roman_name === 'nan' ? '' : '&mdash; ' + person.roman_name + ' &mdash;';
 
     var gender = '';
     switch(person.gender) {
