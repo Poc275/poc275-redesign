@@ -10,32 +10,6 @@ h1 {
     letter-spacing: 2px;
 }
 
-/* Legend */
-#legend-col {
-    background-image: url('images/parthenon-transp-opacity.png');
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: contain;
-}
-
-#legend {
-    fill: #c9c6c0;
-}
-
-.link-path-legend {
-    stroke: #c9c6c0;
-    fill: none;
-}
-
-.legend-colour-path {
-    fill: none;
-    stroke-linecap: round;
-}
-
-.btn-group {
-    margin: 10px 0;
-}
-
 /* Main */
 body {
     color: #c9c6c0;
@@ -62,6 +36,38 @@ body {
 
 #mythos-chart svg {
     z-index: 2;
+}
+
+a, a:link, a:visited, a:active {
+    color: #ddece9;
+    border-bottom: 1px dotted rgba(231, 228, 202, 0.5);
+    text-decoration: none;
+}
+
+/* Legend */
+#legend-col {
+    background-image: url('images/parthenon-transp-opacity.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: contain;
+}
+
+#legend {
+    fill: #c9c6c0;
+}
+
+.link-path-legend {
+    stroke: #c9c6c0;
+    fill: none;
+}
+
+.legend-colour-path {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.btn-group {
+    margin: 10px 0;
 }
 
 /* labels */
@@ -196,7 +202,8 @@ body {
     font-size: 36px;
     margin-left: 50px;
     text-decoration: none;
-    color: #a8a394;
+    color: #a02828;
+    border-bottom: none;
 }
 
 .side-window .close-btn:hover {
