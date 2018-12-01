@@ -146,7 +146,11 @@ body {
 }
 
 .link-couple {
-    stroke-dasharray: 5,5;
+    stroke-dasharray: 3,3;
+}
+
+.link-acquaintance {
+    stroke-dasharray: 10,10;
 }
 
 .node {

@@ -306,7 +306,18 @@ Promise.all(promises).then(function(values) {
         // find centre of arc
         var centres = findCentres(d.r, d.source, d.target);
         d.centre = d.sign ? centres.c2 : centres.c1;
-        d.lineDash = (d.type === 'spouse' ? [5,5] : []);
+        switch(d.type) {
+            case 'spouse':
+                d.lineDash = [3,3];
+                break;
+            
+            case 'acquaintance':
+                d.lineDash = [10,10];
+                break;
+            
+            default:
+                d.lineDash = [];
+        }
     });
 
     linkSave = links;
