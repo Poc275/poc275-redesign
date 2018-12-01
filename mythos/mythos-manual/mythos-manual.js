@@ -222,6 +222,43 @@ var oldLevelSelectedNodes;
 
 // Click events
 var clickLocked = false;
+var pathLocked = false;
+var startNode = {};
+var endNode = {};
+startNode.id = 0;
+endNode.id = 0;
+var route;
+
+// clicked node appearance
+var clickedCircle = svg.append('circle')
+    .attr('class', 'node-clicked')
+    .attr('r', 16)
+    .style('opacity', 0);
+
+var clickedCircleEnd = svg.append('circle')
+    .attr('class', 'node-clicked')
+    .attr('r', 16)
+    .style('opacity', 0);
+
+// first person clicked label
+var firstClickNodeWrapper = labelWrapper.append('g')
+    .attr('class', 'tooltip-wrapper')
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+    .style('opacity', 0);
+
+var firstClickedName = firstClickNodeWrapper.append('text')
+    .attr('class', 'tooltip-name')
+    .text('');
+
+// second person clicked label
+var pathClickNodeWrapper = labelWrapper.append('g')
+    .attr('class', 'tooltip-wrapper')
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+    .style('opacity', 0);
+
+var pathClickedName = pathClickNodeWrapper.append('text')
+    .attr('class', 'tooltip-name')
+    .text('');
 
 // Read in the data
 var linkedByIndex = {};
@@ -338,12 +375,19 @@ Promise.all(promises).then(function(values) {
             // check if we are in investigate mode or shortest path mode
             if(document.getElementById('information-btn').checked) {
                 // investigate mode
+                highlightClickedNode(found.data);
                 showPersonInfoWindow(found.data);
             } else {
                 // shortest path mode
+                clickedOnNode(found.data);
             }
+        } else {
+            clearClicks();
         }
     });
+
+    // initialise shortest paths
+    shortestPathCalculator(nodes, links);
 
 }).catch(function(err) {
     throw err;
@@ -413,45 +457,6 @@ function findCentres(r, p1, p2) {
 function clearCanvas() {
     ctxLinks.clearRect(0, -margin.top, totalWidth, totalHeight);
     ctxNodes.clearRect(0, -margin.top, totalWidth, totalHeight);
-}
-
-
-// Helper functions
-function sq(x) {
-    return x * x;
-}
-
-function uniq(a) {
-    return a.sort().filter(function(item, pos, ary) {
-        return !pos || item != ary[pos - 1];
-    });
-}
-
-// wrap text in an svg
-function wrap(text, width, heightLine) {
-    text.each(function() {
-        var text = d3.select(this);
-        var words = text.text().split(/\s+/).reverse();
-        var word;
-        var line = [];
-        var lineNumber = 0;
-        var lineHeight = (typeof heightLine === 'undefined' ? 1.6 : heightLine);
-        var y = text.attr('y');
-        var x = text.attr('x');
-        var dy = parseFloat(text.attr('dy'));
-        var tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
-
-        while(word = words.pop()) {
-            line.push(word);
-            tspan.text(line.join(' '));
-            if(tspan.node().getComputedTextLength() > width) {
-                line.pop();
-                tspan.text(line.join(' '));
-                line = [word];
-                tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
-            }
-        }
-    });
 }
 
 // information window functions
@@ -549,4 +554,42 @@ function closeInfoWindow() {
 
     // hide window
     document.getElementById('info-window').style.width = "0";
+}
+
+// Helper functions
+function sq(x) {
+    return x * x;
+}
+
+function uniq(a) {
+    return a.sort().filter(function(item, pos, ary) {
+        return !pos || item != ary[pos - 1];
+    });
+}
+
+// wrap text in an svg
+function wrap(text, width, heightLine) {
+    text.each(function() {
+        var text = d3.select(this);
+        var words = text.text().split(/\s+/).reverse();
+        var word;
+        var line = [];
+        var lineNumber = 0;
+        var lineHeight = (typeof heightLine === 'undefined' ? 1.6 : heightLine);
+        var y = text.attr('y');
+        var x = text.attr('x');
+        var dy = parseFloat(text.attr('dy'));
+        var tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+
+        while(word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(' '));
+            if(tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(' '));
+                line = [word];
+                tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
+            }
+        }
+    });
 }

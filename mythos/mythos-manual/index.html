@@ -24,9 +24,14 @@
       </div>
 
       <!-- intro row -->
-      <div class="row">
-        <div class="col" id="legend-col">
+      <div class="row" id="legend-col">
+        <div class="col">
           <div id="legend"></div>
+
+          <p>You can hover over a person to see their connections. This highlights 3-degrees of separation, the early gods were a close-knit 
+              bunch and the usual 6-degrees of separation would highlight the entire graph! You can also interrogate the graph further by 
+              setting one of the modes. Information mode means clicking on a person will display a window with further information. Shortest path 
+              mode means clicking on two people will show you the shortest path between them.</p>
 
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light btn-sm active">
@@ -36,11 +41,6 @@
               <input type="radio" name="mode" id="shortest-path-btn" autocomplete="off"> Shortest Path Mode
             </label>
           </div>
-
-          <p>You can hover over a person to see their connections. This highlights 3-degrees of separation, the early gods were a close-knit 
-            bunch and the usual 6-degrees of separation would highlight the entire graph! You can also interrogate the graph further by 
-            setting one of the modes. Information mode means clicking on a person will display a window with further information. Shortest path 
-            mode means clicking on two people will show you the shortest path between them.</p>
         </div>
 
         <div class="col">
@@ -52,9 +52,9 @@
             embarrassing when that happens). You can tell people that we descended from Deucalion and Pyrrha and see the horrors that emerged 
             from Pandora’s jar (and what was left inside).</p>
 
-          <p>The visual is arranged by the Olympians and the ages of man. The Olympians are the twelve major deities of the Greek pantheon 
-            and most connections involve them which is why they are highlighted. The ages of man help convey some sort of timeline for the 
-            origin of the gods (an accurate timeline is almost impossible). The ages are according to Hesiod’s poem Works and Days which describe 
+          <p>The visual is arranged by the Olympians and the ages of man. The Olympians are the twelve major deities of the Greek pantheon, 
+            therefore most connections involve them at some point. The ages of man help convey some sort of timeline for the 
+            origin of the gods (an accurate timeline is almost impossible). The ages are according to Hesiod’s poem Works and Days which describes 
             the various stages of human existence on Earth. Other people of interest are also highlighted to help you navigate the visual. These 
             are people you’ve probably heard of before but now you can see who they are connected to.</p>
         </div>
@@ -85,7 +85,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="shortestPathCalculator.js"></script>
     <script src="mouseEvents.js"></script>
+    <script src="clickEvents.js"></script>
     <script src="createLegend.js"></script>
     <script src="mythos-manual.js"></script>
   </body>

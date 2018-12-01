@@ -25,7 +25,7 @@
 
 body {
     /* background-color: #101420; */
-    color: #a8a394;
+    color: #c9c6c0;
     background: #2980b9;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -114,6 +114,28 @@ body {
     pointer-events: all;
 }
 
+/* clicked */
+.node-clicked {
+    stroke: #fff;
+    fill: none;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-opacity: 0.75;
+    stroke-dasharray: 0, 5;
+    pointer-events: none;
+
+    animation-duration: 1s;
+    animation-name: changedash;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+@keyframes changedash {
+    from { stroke-dashoffset: 5px; }
+    to { stroke-dashoffset: 0px; }
+}
+
 /* network */
 .link {
     stroke: #d4d4d4;
@@ -179,10 +201,3 @@ body {
     /* text-align: center; */
     font-weight: 600;
 }
-
-/* .side-window #roman-name,
-.side-window #god-of,
-.side-window #secondary-info,
-.side-window #bio-title {
-    text-align: center;
-} */
