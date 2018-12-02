@@ -6,7 +6,7 @@ var margin = {
     left: 50
 };
 var totalWidth = 1300;
-var totalHeight = 1600;
+var totalHeight = 1400;
 var width = totalWidth - margin.left - margin.right;
 var height = totalHeight - margin.top - margin.bottom;
 
