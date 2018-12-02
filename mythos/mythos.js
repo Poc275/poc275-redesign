@@ -498,45 +498,45 @@ function showPersonInfoWindow(person) {
     }
 
     // TODO - add this to the nodes dataset so this becomes unnecessary
-    var home = '';
+    var home = '<i class="fas fa-home"></i>';
     switch(person.home_pos) {
         case 0:
-            home = 'Olympus';
+            home = home.concat(' ', 'Olympus');
             break;
         case 200:
-            home = 'Elysium';
+            home = home.concat(' ', 'Elysium');
             break;
         case 400:
-            home = 'Sky';
+            home = home.concat(' ', 'Sky');
             break;
         case 600:
-            home = 'Mountains';
+            home = home.concat(' ', 'Mountains');
             break;
         case 800:
-            home = 'Sea';
+            home = home.concat(' ', 'Sea');
             break;
         case 1000:
-            home = 'Rivers';
+            home = home.concat(' ', 'Rivers');
             break;
         case 1200:
-            home = 'Earth';
+            home = home.concat(' ', 'Earth');
             break;
         case 1400:
-            home = 'Erebus';
+            home = home.concat(' ', 'Erebus');
             break;
         case 1600:
-            home = 'Hades';
+            home = home.concat(' ', 'Hades');
             break;
         case 1800:
-            home = 'Tartarus';
+            home = home.concat(' ', 'Tartarus');
             break;
         default:
-            home = 'Earth';
+            home = home.concat(' ', 'Earth');
             break;
     }
 
     var group = person.group === 'nan' ? '' : person.group;
-    var secondaryInfo = gender + ' | ' + home + ' | ' + person.age + ' age | ' + group;
+    var secondaryInfo = gender + ' | ' + home + ' | ' + '<i class="far fa-clock"></i> ' + person.age + ' age | ' + '<i class="fas fa-tags"></i> ' + group;
     document.getElementById('secondary-info').innerHTML = secondaryInfo;
 
     if(person.notes === 'nan') {
