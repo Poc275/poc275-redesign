@@ -68,6 +68,11 @@ ul, ol {
     padding-inline-start: 0;
 }
 
+.sublist {
+    list-style-type: lower-alpha;
+    margin-left: 2em;
+}
+
 abbr {
     font-style: italic;
 }
@@ -343,6 +348,18 @@ a:hover {
     url('../img/project-items-grid/countdown.png');
 }
 
+#mythos-project {
+    background-image: url('../img/project-items-grid/mythos.png');
+}
+
+#mythos-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/mythos.png');
+}
+
 
 .overlay {
     transition: 0.5s ease;
@@ -432,6 +449,15 @@ a:hover {
     .project-title {
         padding: 0 3rem 0;
     }
+}
+
+#mythos-project-header {
+    background: linear-gradient(to bottom,
+            rgba(12, 16, 28, 0) 0%,
+            rgba(12, 16, 28, 0.65) 65%,
+            rgba(12, 16, 28, 0.65) 66%),
+        url('../img/backgrounds/mythos.png') no-repeat 0% 0 fixed;
+    background-size: cover;
 }
 
 #top-heroes-project-header {
