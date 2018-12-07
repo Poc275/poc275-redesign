@@ -113,11 +113,6 @@
 
         <div class="row">
             <div class="col-md-6">
-                <p>The Windows runtime (WinRT) was chosen as the target environment, although this is arbitrary as the controls have 
-                    been built up using standard controls that are widely available in other environments. The full dissertation has 
-                    been published in the <a href="http://computing.derby.ac.uk/ojs/index.php/da/article/view/53" target="_blank">university’s online journal</a>. 
-                    Please feel free to <a href="https://github.com/Poc275/DataVisUserControls" target="_blank">use the controls</a> and expand upon them.</p>
-
                 <h3>Structure</h3>
                 <p>My happiness soon waned however. There wasn’t any structure to the graph. You can see clusters around the main characters like Zeus in the 
                     centre and Gaia and Ouranos on the right but would anyone be able to ascertain anything more useful? Probably not.</p>
@@ -359,11 +354,12 @@ nodes.map(function(node) {
 
                 <p>The algorithm is a &ldquo;breadth-first&rdquo; search algorithm i.e. it doesn’t work towards a direct destination (unlike depth-first searching). 
                     It expands out from the initial starting point considering all neighbours, choosing the closest until all nodes have been visited. We can then 
-                    easily calculate the shortest distance between the starting node and any other node by traversing the distance table:</p>
+                    calculate the shortest distance between two nodes by simply reading from the distance table:</p>
 
                 <ol>
-                    <li>Push the end node id onto a stack.</li>
-                    <li>Retrieve this node id entry from the distance table.</li>
+                    <li>Create a stack.</li>
+                    <li>Push the destination node id onto the stack.</li>
+                    <li>Retrieve the node from the distance table.</li>
                     <li>Push its closest node id onto the stack.</li>
                     <li>Repeat until the closest node id equals the starting node id.</li>
                     <li>Pop from the stack and you have the shortest path between the two nodes.</li>
