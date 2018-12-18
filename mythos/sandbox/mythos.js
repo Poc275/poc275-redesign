@@ -13,7 +13,7 @@ var olympians = [70, 69, 127, 66, 126, 73, 71, 138, 135, 132, 240, 134];
 var interestingPeople = [1, 6, 9, 11, 21, 16, 42, 67, 68, 104, 120, 125, 140, 158, 163, 176, 254, 291, 356, 391];
 
 var xCentres = [50, 150, 250, 350, 450, 550, 650, 750, 850, 950, 1050, 1150];
-var yCentres = [0, 200, 400, 1000];
+var yCentres = [0, 200, 400, 1000, 1500];
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(10))
@@ -60,6 +60,8 @@ function yPosGenerator(age) {
             return yCentres[2];
         case "Bronze":
             return yCentres[3];
+        case "Heroic":
+            return yCentres[4];
         default:
             return yCentres[3];
     }
