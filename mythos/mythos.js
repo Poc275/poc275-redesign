@@ -1,12 +1,12 @@
 // Sizing
 var margin = {
-    top: -140, // pulls the graph up
+    top: 0, // pulls the graph up
     right: 0,
     bottom: 0,
     left: 50
 };
-var totalWidth = 1300;
-var totalHeight = 1400;
+var totalWidth = 1400;
+var totalHeight = 1900;
 var width = totalWidth - margin.left - margin.right;
 var height = totalHeight - margin.top - margin.bottom;
 
@@ -79,18 +79,25 @@ var interestingPeopleDetails = [
     {id: 254, name: 'Asclepius', roman_name: 'Aesculapius', description: 'God of medicine and healing'},
     {id: 291, name: 'Herakles', roman_name: 'Hercules', description: 'One of the most famous of the Heroes'},
     {id: 356, name: 'Narcissus', roman_name: '', description: 'Fell in love with himself'},
-    {id: 391, name: 'Midas', roman_name: '', description: 'Everything he touched turned to gold'}
+    {id: 391, name: 'Midas', roman_name: '', description: 'Everything he touched turned to gold'},
+    {id: 412, name: 'Perseus', roman_name: '', description: 'The destroyer'},
+    {id: 514, name: 'Bellerophon', roman_name: '', description: 'The slayer of monsters astride the winged horse Pegasus'},
+    {id: 75, name: 'Orpheus', roman_name: '', description: 'Greatest musician of all'},
+    {id: 530, name: 'Jason', roman_name: '', description: 'Leader of the Argonauts'},
+    {id: 605, name: 'Atalanta', roman_name: '', description: 'The co-equal'},
+    {id: 300, name: 'Oedipus', roman_name: '', description: 'Unwittingly married his mother'},
+    {id: 645, name: 'Theseus', roman_name: '', description: 'Hero of Athens'}
 ];
 var interestingPeople = interestingPeopleDetails.map(function(interestingPerson) {
     return interestingPerson.id;
 });
 
 // Main x,y scales
-var ageSpread = [0, 400, 800, 1400];
+var ageSpread = [0, 200, 400, 1000, 1700];
 var ageLoc = d3.range(0, height, height / ageSpread.length).concat(height).reverse();
 var ageOrdinalScale = d3.scaleOrdinal()
-    .range([170, 530, 700, 950])
-    .domain(['Creation', 'Golden', 'Silver', 'Bronze']);
+    .range([100, 400, 600, 900, 1200])
+    .domain(['Creation', 'Golden', 'Silver', 'Bronze', 'Heroic']);
 
 var ageScale = d3.scaleLinear()
     .range(ageLoc)
@@ -174,7 +181,7 @@ var tooltipExtra = tooltipWrapper.append('text')
 // add y axis label
 labelWrapper.append('text')
     .attr('class', 'age-label')
-    .attr('transform', 'translate(' + 0 + ',' + ageScale(1500) + ') rotate(-90)')
+    .attr('transform', 'translate(' + 0 + ',' + ageScale(2000) + ') rotate(-90)')
     .text('(Ages of Man)');
 
 // add labels
@@ -184,8 +191,8 @@ var olympianTextWrapper = labelWrapper.selectAll('.olympian-label')
     .attr('class', 'olympian-label')
     .attr('transform', function(d, i) {
         // return 'translate(' + (spreadScale(i)) + ',' + ageScale(1400) + ')';
-        // 170 to account for top margin
-        return 'translate(' + (spreadScale(i)) + ',' + 170 + ')';
+        // 50px to account for top margin
+        return 'translate(' + (spreadScale(i)) + ',' + 50 + ')';
     });
 
 olympianTextWrapper.append('text')
