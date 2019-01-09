@@ -1,6 +1,6 @@
 // Sizing
 var margin = {
-    top: 0, // pulls the graph up
+    top: -100, // pulls the graph up
     right: 0,
     bottom: 0,
     left: 50
@@ -65,6 +65,7 @@ var interestingPeopleDetails = [
     {id: 6, name: 'Gaia', roman_name: 'Terra', description: 'Mother Earth'},
     {id: 9, name: 'Ouranos', roman_name: 'Uranus', description: 'Primordial God of the Sky'},
     {id: 16, name: 'Kronos', roman_name: 'Saturn', description: 'Primordial God of earth, sea, sky and time'},
+    {id: 36, name: 'Helios', roman_name: 'Sol', description: 'Charioteer of the sun'},
     {id: 40, name: 'Atlas', roman_name: '', description: 'Bearer of the heavens'},
     {id: 42, name: 'Prometheus', roman_name: '', description: 'God of forethought'},
     {id: 67, name: 'Hestia', roman_name: 'Vesta', description: 'Goddess of hospitality or xenia'},
@@ -96,7 +97,7 @@ var interestingPeople = interestingPeopleDetails.map(function(interestingPerson)
 var ageSpread = [0, 200, 400, 1000, 1700];
 var ageLoc = d3.range(0, height, height / ageSpread.length).concat(height).reverse();
 var ageOrdinalScale = d3.scaleOrdinal()
-    .range([100, 400, 600, 900, 1200])
+    .range([80, 350, 600, 800, 1000])
     .domain(['Creation', 'Golden', 'Silver', 'Bronze', 'Heroic']);
 
 var ageScale = d3.scaleLinear()
@@ -105,7 +106,7 @@ var ageScale = d3.scaleLinear()
 
 svg.append('g')
     .attr('class', 'axis axis--y')
-    .attr('transform', 'translate(' + 15 + ',' + 50 + ')')
+    .attr('transform', 'translate(' + 15 + ',' + 150 + ')')
     .call(d3.axisLeft(ageOrdinalScale));
 
 // Other Scales
@@ -181,7 +182,7 @@ var tooltipExtra = tooltipWrapper.append('text')
 // add y axis label
 labelWrapper.append('text')
     .attr('class', 'age-label')
-    .attr('transform', 'translate(' + 0 + ',' + ageScale(2000) + ') rotate(-90)')
+    .attr('transform', 'translate(' + 0 + ',' + ageScale(1850) + ') rotate(-90)')
     .text('(Ages of Man)');
 
 // add labels
@@ -192,7 +193,7 @@ var olympianTextWrapper = labelWrapper.selectAll('.olympian-label')
     .attr('transform', function(d, i) {
         // return 'translate(' + (spreadScale(i)) + ',' + ageScale(1400) + ')';
         // 50px to account for top margin
-        return 'translate(' + (spreadScale(i)) + ',' + 50 + ')';
+        return 'translate(' + (spreadScale(i)) + ',' + 150 + ')';
     });
 
 olympianTextWrapper.append('text')
@@ -483,7 +484,7 @@ function showPersonInfoWindow(person) {
     document.getElementById('pic').style.backgroundImage = 
         'linear-gradient(to bottom, rgba(44, 62, 80, 0.22) 0%, rgba(44, 62, 80, 1) 100%), url(images/' + person.id + '.jpg)';
     document.getElementById('name').innerText = person.name === 'nan' ? '' : person.name;
-    document.getElementById('god-of').innerText = person.god_of === 'nan' ? '' : 'God of ' + person.god_of;
+    document.getElementById('god-of').innerText = person.god_of === 'nan' ? '' : person.god_of;
     document.getElementById('roman-name').innerHTML = person.roman_name === 'nan' ? '' : '&mdash; ' + person.roman_name + ' &mdash;';
 
     var gender = '';
@@ -504,43 +505,7 @@ function showPersonInfoWindow(person) {
             break;
     }
 
-    // TODO - add this to the nodes dataset so this becomes unnecessary
-    var home = '<i class="fas fa-home"></i>';
-    switch(person.home_pos) {
-        case 0:
-            home = home.concat(' ', 'Olympus');
-            break;
-        case 200:
-            home = home.concat(' ', 'Elysium');
-            break;
-        case 400:
-            home = home.concat(' ', 'Sky');
-            break;
-        case 600:
-            home = home.concat(' ', 'Mountains');
-            break;
-        case 800:
-            home = home.concat(' ', 'Sea');
-            break;
-        case 1000:
-            home = home.concat(' ', 'Rivers');
-            break;
-        case 1200:
-            home = home.concat(' ', 'Earth');
-            break;
-        case 1400:
-            home = home.concat(' ', 'Erebus');
-            break;
-        case 1600:
-            home = home.concat(' ', 'Hades');
-            break;
-        case 1800:
-            home = home.concat(' ', 'Tartarus');
-            break;
-        default:
-            home = home.concat(' ', 'Earth');
-            break;
-    }
+    var home = '<i class="fas fa-home"></i> ' + person.home;
 
     var group = person.group === 'nan' ? '' : person.group;
     var secondaryInfo = gender + ' | ' + home + ' | ' + '<i class="far fa-clock"></i> ' + person.age + ' age | ' + '<i class="fas fa-tags"></i> ' + group;
