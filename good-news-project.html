@@ -29,6 +29,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+                <p><a href="#v2-update">Updated 10th Jan 2019</a></p>
+
                 <p>This project came about as part of a part-time MSc in Data Science I was undertaking at Aston University. This was a sponsored 
                     programme through my workplace that offered the chance to study Data Science modules part-time at your own pace with a chance to 
                     complete an MSc if enough modules were completed. The module in question was &lsquo;Understanding Data&rsquo; which was an introductory module 
@@ -1157,6 +1159,64 @@
 
                 <p>Alongside this work more articles are being labelled, particularly good news articles to try and balance the datasets and prevent biased 
                     results. This is currently ongoing so stay tuned for the results!</p>
+
+                <h2 id="v2-update">(Update) Good News v2.0 is live</h2>
+                <p>A substantial dataset is now available that contains the new features. A random forest model has given the best accuracy and it utilises 
+                    some of the new features, particularly quote subjectivity and lemmatized subjectivity, which is promising.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <a href="img/project-images/good-news-project/v2-decision-tree.png">
+                <figure class="figure">
+                        <img src="img/project-images/good-news-project/v2-decision-tree.png" class="figure-img img-fluid rounded" alt="a decision tree from the v2 random forest">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> As discussed, decision trees are easy to overfit so it is important to keep an eye on how the tree is 
+                        being generated. Keeping the number of samples high at each node is a good way to reduce overfitting.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>I still have the problem of an unbalanced dataset however (more bad news labels than good). I decided to productionise the model anyway because:</p>
+                <ul>
+                    <li>It will be a good experience to productionise a model to see how it can be done.</li>
+                    <li>I can use the model’s predictions as a way to generate more good news labels. This saves me having to do it manually and means I can keep 
+                        improving the model in an iterative fashion.</li>
+                </ul>
+                <p>Productionising wasn’t a trivial task. The model is created using Python and I wanted to run it using Azure Functions. Although Python is 
+                    supported in Azure, it isn’t a first-class citizen as yet and there are a 
+                    <a href="https://medium.com/@poc275/using-python-in-azure-functions-1c1fe677fef5" target="_blank">few pitfalls you need be aware of</a>. The 
+                    model was pickled and copied over to Azure which didn’t work at first. Pickle doesn’t work across architectures so I had to copy the original Python 
+                    script over and run it on the server itself.</p>
+                <p>The feature generation Azure Function could then call the model Azure Function via a HTTP request when it had all of the features available. The 
+                    model Azure Function loads the pickled model generated earlier to then make a prediction. Each prediction comes with a confidence value which 
+                    is used as a threshold to only select articles where the confidence is high. These articles are then inserted into a new table for the web 
+                    site to access.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <a href="img/project-images/good-news-project/v2-data-pipeline.jpg">
+                <figure class="figure">
+                        <img src="img/project-images/good-news-project/v2-data-pipeline.jpg" class="figure-img img-fluid rounded" alt="version 2 of the data pipeline">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Updated data pipeline.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><a href="http://goodnws.azurewebsites.net/" target="_blank">Version 2 of the site</a> now allows users to flag articles that they don’t 
+                    consider to be good news. I use this as a kind of ‘crowd sourcing’ way to label the dataset further to keep improving the accuracy of the model.</p>
 
                 <h2 id="references">References</h2>
                 <p>Baden, D., 2015. Shock! Horror! Behind the ethics and evolution of the bad news business. <cite>The Conversation,</cite> 27 March.</p>
