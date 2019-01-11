@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <url>
+        <loc>https://poc275.me/index.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2019-01-10</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/3d-software-renderer-project.html</loc>
+        <video:video>
+            <video:content_loc>
+                https://poc275.me/vid/Intro3dDemo.mp4
+            </video:content_loc>
+            <video:title>3D Software Renderer</video:title>
+            <video:description>Demonstration of my 3D Software Renderer written in C++</video:description>
+        </video:video>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+        <lastmod>2018-10-30</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/bots-projects.html</loc>
+        <video:video>
+            <video:content_loc>
+                https://poc275.me/vid/housewrk.mp4
+            </video:content_loc>
+            <video:title>Housewrk Bot Demo</video:title>
+            <video:description>Demonstration of the Housewrk bot</video:description>
+        </video:video>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/classified-ads-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/codemaster-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/data-visualisation-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <lastmod>2018-10-29</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/database-design-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/good-news-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2019-01-10</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/itunes-to-spotify-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/mythos-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2018-12-07</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/nback-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/programming-language-design-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-29</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/street-sounds-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+        <lastmod>2018-10-29</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/text-analyser-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-29</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/top-heroes-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2018-10-29</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/website-redesign-and-report.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/windows-api-programming-project.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-26</lastmod>
+    </url>
+
+    <!-- Countdown -->
+    <url>
+        <loc>https://poc275.me/countdown/countdown.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <!-- Mythos -->
+    <url>
+        <loc>https://poc275.me/mythos/index.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2019-01-09</lastmod>
+    </url>
+
+    <!-- NBack -->
+    <url>
+        <loc>https://poc275.me/NBack/index.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-25</lastmod>
+    </url>
+
+    <!-- USA/Canada Trip -->
+    <url>
+        <loc>https://poc275.me/usa-canada/usa-canada-trip.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/nyc.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/nyc-activities.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/nyc-places.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/nyc-photos.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/washington.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/washington-activities.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/washington-places.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/washington-photos.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/toronto.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/toronto-activities.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/toronto-places.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/toronto-photos.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/boston.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/boston-activities.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/boston-places.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/usa-canada/boston-photos.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2018-10-16</lastmod>
+    </url>
+</urlset>
