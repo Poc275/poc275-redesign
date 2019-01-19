@@ -406,7 +406,7 @@ Promise.all(promises).then(function(values) {
     });
 
     // initialise shortest paths
-    shortestPathCalculator(nodes, links);
+    shortestPathInit();
 
 }).catch(function(err) {
     throw err;

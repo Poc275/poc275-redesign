@@ -17,33 +17,19 @@
     <div class="container">
       <!-- title row -->
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <h1 id="main-title">Mythos</h1>
           <h4>A visualisation of the Greek Gods</h4>
+        </div>
+        <div class="col-5 offset-1">
+          <h5 id="sub-title">Key/How to navigate</h5>
+          <h6>(Best viewed in a modern browser and on a desktop screen)</h6>
         </div>
       </div>
 
       <!-- intro row -->
       <div class="row" id="legend-col">
-        <div class="col">
-          <div id="legend"></div>
-
-          <p>You can hover over a person to see their connections. This highlights 3-degrees of separation, the early gods were a close-knit 
-              bunch and the usual 6-degrees of separation would highlight the entire graph! You can also interrogate the graph further by 
-              setting one of the modes. Information mode means clicking on a person will display a window with further information. Shortest path 
-              mode means clicking on two people will show you the shortest path between them.</p>
-
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-light btn-sm active">
-              <input type="radio" name="mode" id="information-btn" autocomplete="off" checked> Information Mode
-            </label>
-            <label class="btn btn-light btn-sm">
-              <input type="radio" name="mode" id="shortest-path-btn" autocomplete="off"> Shortest Path Mode
-            </label>
-          </div>
-        </div>
-
-        <div class="col">
+        <div class="col-6">
           <p>Ever tried reading the Greek myths and epic poems and become confused with all of the names and family links? You are not alone. All 
             those dalliances have resulted in a complex web of family ties and lineages, and that’s not even taking into account the Gods who would 
             intermingle with the early mortals, taking various forms to feed their lust or to exact revenge.</p>
@@ -55,9 +41,27 @@
           <p>The visual is arranged by the Olympians and the ages of man. The Olympians are the twelve major deities of the Greek pantheon, 
             therefore most connections involve them at some point. The ages of man help convey some sort of timeline for the 
             origin of the gods (an accurate timeline is almost impossible). The ages are according to 
-            <a href="https://en.wikipedia.org/wiki/Works_and_Days" target="_blank">Hesiod’s poem Works and Days</a> which describes 
+            <a href="https://en.wikipedia.org/wiki/Works_and_Days" target="_blank">the poem Works and Days by Hesiod,</a> which describes 
             the various stages of human existence on Earth. Other people of interest are also highlighted to help you navigate the visual. These 
             are people you’ve probably heard of before but now you can see who they are connected to.</p>
+        </div>
+
+        <div class="col-5 offset-1">
+          <div id="legend"></div>
+
+          <p>You can hover over a person to see their connections. This highlights 3-degrees of separation, the early gods were a close-knit 
+              bunch and the usual 6-degrees of separation would highlight the entire graph! You can also interrogate the graph further by 
+              setting one of the modes below. Clicking on a node in information mode will display a window showing further details about that person. 
+              In shortest path mode clicking on two nodes will highlight the shortest path between them.</p>
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-light btn-sm active">
+              <input type="radio" name="mode" id="information-btn" autocomplete="off" checked> Information Mode
+            </label>
+            <label class="btn btn-light btn-sm">
+              <input type="radio" name="mode" id="shortest-path-btn" autocomplete="off"> Shortest Path Mode
+            </label>
+          </div>
         </div>
       </div>
     </div>
