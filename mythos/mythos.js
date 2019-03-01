@@ -87,7 +87,10 @@ var interestingPeopleDetails = [
     {id: 530, name: 'Jason', roman_name: '', description: 'Leader of the Argonauts'},
     {id: 605, name: 'Atalanta', roman_name: '', description: 'The co-equal'},
     {id: 300, name: 'Oedipus', roman_name: '', description: 'Unwittingly married his mother'},
-    {id: 645, name: 'Theseus', roman_name: '', description: 'Hero of Athens'}
+    {id: 645, name: 'Theseus', roman_name: '', description: 'Hero of Athens'},
+    {id: 287, name: 'Odysseus', roman_name: 'Ulysses', description: 'Brains before brawn'},
+    {id: 129, name: 'Achilles', roman_name: '', description: 'Mighty warrior of the Trojan war'},
+    {id: 597, name: 'Hector', roman_name: '', description: 'Mighty warrior of the Trojan war'}
 ];
 var interestingPeople = interestingPeopleDetails.map(function(interestingPerson) {
     return interestingPerson.id;
