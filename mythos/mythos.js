@@ -100,7 +100,7 @@ var interestingPeople = interestingPeopleDetails.map(function(interestingPerson)
 var ageSpread = [0, 200, 400, 1000, 1700];
 var ageLoc = d3.range(0, height, height / ageSpread.length).concat(height).reverse();
 var ageOrdinalScale = d3.scaleOrdinal()
-    .range([80, 350, 600, 800, 1000])
+    .range([80, 500, 650, 800, 1000])
     .domain(['Creation', 'Golden', 'Silver', 'Bronze', 'Heroic']);
 
 var ageScale = d3.scaleLinear()
