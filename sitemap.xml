@@ -3,10 +3,10 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     
     <url>
-        <loc>https://poc275.me/index.html</loc>
+        <loc>https://poc275.me</loc>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
-        <lastmod>2019-01-10</lastmod>
+        <lastmod>2019-04-18</lastmod>
     </url>
 
     <url>
