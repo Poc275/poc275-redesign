@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <title>Kindle Clippings Project</title>
+  </head>
+  <body>
+    <div class="container-fluid project-header" id="kindle-clippings-project-header">
+        <div class="row project-title">
+            <h1>Kindle Clippings</h1>
+            <p><span title="Date">📅</span> September 2019</p>
+            <p><span title="Built With">🔨</span> JavaScript</p>
+            <p><span title="Tools Used">🔧</span> React | <a href="https://airtable.com/" target="_blank">Airtable</a> | <a href="https://www.wordnik.com/" target="_blank">Wordnik</a> | <a href="https://www.goodreads.com/" target="_blank">Goodreads</a></p>
+            <p><span title="Link">🔗 </span><a href="https://kindle-clippings.netlify.com/" target="_blank">View</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>I love to read, and if I’m reading on my Kindle then I like to highlight my favourite passages and words to create a collection of 
+                    interesting information for future reference. Unfortunately, the Kindle ecosystem is quite limited on what you can do with these ‘clippings’. You 
+                    can view them on the Kindle cloud reader app, and I’ve used the <a href="https://www.clippings.io/" target="_blank">Clippings.io web app</a> which 
+                    enables me to organise and tag them. However, I wanted a bit more functionality such as the ability to look up word definitions, retrieve book 
+                    information and an improved UX as I wasn’t too enamoured with the infinite scrolling UI.</p>
+
+                <p>I came across the excellent <a href="https://notapattern.net/2016/03/10/amanuensis-automating-kindle-highlights/" target="_blank">Amanuensis project</a> 
+                    which had very similar aims. The key idea behind this, and the part I was missing, was to export from Clippings.io and import them into Airtable. This 
+                    finally gets them into a place you can access via an API.</p>
+
+                <p>I was then able to create a simple React app to read from the Airtable API. Word definitions are provided via the 
+                    <a href="https://www.wordnik.com/" target="_blank">Wordnik API</a>. This is a great resource and as a non-profit organisation it is well worth the 
+                    $5 to get an API key and support the project at the same time.</p>
+
+                <p>Book information is provided by the <a href="https://www.goodreads.com/api" target="_blank">Goodreads API</a>. Surprisingly, the API doesn’t support 
+                    <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, so any requests initiated from a script will be denied (i.e. the API doesn’t send an 
+                    <code>Access-Control-Allow-Origin</code> header in the response). To get around this I needed a proxy to take the request from the script and forward 
+                    it to the API. There are some funky workarounds that I’ve seen to do this such as using <a href="https://yuilibrary.com/yui/docs/yql/" target="_blank">YQL</a> 
+                    (now retired) but since I have access to Azure, I decided the easiest option was to create an Azure Function App. Function Apps have a proxy option which 
+                    can be set to forward requests to any other resource.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/kindle-clippings-project/azure-function-proxy.jpg">
+                        <img src="img/project-images/kindle-clippings-project/azure-function-proxy.jpg" class="figure-img img-fluid rounded" alt="azure function proxy">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Azure Function Proxy Setup. Remember to use curly braces to reference request parameters.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>Then it’s a simply a case of calling the Function App’s endpoint and the book information is retrieved.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <figure class="figure">
+                    <a href="img/project-images/kindle-clippings-project/kindle-clippings.jpg">
+                        <img src="img/project-images/kindle-clippings-project/kindle-clippings.jpg" class="figure-img img-fluid rounded" alt="clipping example">
+                    </a>
+                    <figcaption class="figure-caption text-left">
+                        <i class="fas fa-camera"></i> Example of a word definition clipping.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>At this current stage I’m just displaying a random clipping, the book information, and a definition if the clipping is a single word. Future 
+                    features include arranging the clippings by book, navigation buttons to get the next clipping or a random clipping, retrieve more detailed book/definition 
+                    information and some <abbr title="Natural Language Processing">NLP</abbr> to retrieve sentiment and keywords to do automatic tagging. The 
+                    <a href="https://kindle-clippings.netlify.com/" target="_blank">live app is available now hosted on Netlify</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  </body>
+</html>

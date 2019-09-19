@@ -6,7 +6,7 @@
         <loc>https://poc275.me</loc>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
-        <lastmod>2019-04-24</lastmod>
+        <lastmod>2019-09-19</lastmod>
     </url>
 
     <url>
@@ -73,6 +73,12 @@
         <loc>https://poc275.me/itunes-to-spotify-project.html</loc>
         <changefreq>monthly</changefreq>
         <lastmod>2018-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/kindle-clippings-project.html</loc>
+        <changefreq>monthly</changefreq>
+        <lastmod>2019-09-19</lastmod>
     </url>
 
     <url>
