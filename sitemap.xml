@@ -6,7 +6,7 @@
         <loc>https://poc275.me</loc>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
-        <lastmod>2019-09-19</lastmod>
+        <lastmod>2019-12-08</lastmod>
     </url>
 
     <url>
@@ -152,6 +152,13 @@
         <loc>https://poc275.me/NBack/index.html</loc>
         <changefreq>yearly</changefreq>
         <lastmod>2018-10-25</lastmod>
+    </url>
+
+    <!-- Tufte D3 -->
+    <url>
+        <loc>https://poc275.me/tufte-d3js/index.html</loc>
+        <changefreq>monthly</changefreq>
+        <lastmod>2019-12-08</lastmod>
     </url>
 
     <!-- USA/Canada Trip -->

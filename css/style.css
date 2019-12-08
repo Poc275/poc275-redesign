@@ -372,6 +372,17 @@ a:hover {
     url('../img/project-items-grid/kindle-clippings.jpg');
 }
 
+#tufte-d3-project {
+    background-image: url('../img/project-items-grid/minard.png');
+}
+#tufte-d3-project:hover {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ),
+    url('../img/project-items-grid/minard.png');
+}
+
 
 .overlay {
     transition: 0.5s ease;
