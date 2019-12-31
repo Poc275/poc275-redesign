@@ -158,7 +158,19 @@
     <url>
         <loc>https://poc275.me/tufte-d3js/index.html</loc>
         <changefreq>monthly</changefreq>
-        <lastmod>2019-12-08</lastmod>
+        <lastmod>2019-12-31</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/tufte-d3js/us-cancer-rates-map.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2019-12-31</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/tufte-d3js/nyc-weather.html</loc>
+        <changefreq>monthly</changefreq>
+        <lastmod>2019-12-31</lastmod>
     </url>
 
     <!-- USA/Canada Trip -->

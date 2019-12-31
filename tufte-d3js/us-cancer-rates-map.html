@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Tufte in D3.js - US Cancer Rates Map</title> 
+    <link rel="stylesheet" href="css/tufte.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!-- <link rel="stylesheet" href="latex.css"/> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3-geo.min.js"></script>
+  </head>
+
+  <body>
+    <article>
+      <h1 id="tufte-css">Data Maps</h1>
+      <p class="subtitle">Cancer rates in the US by county, 2012-2016</p>
+
+      <section>
+        <figure class="fullwidth">
+            <p class="subtitle">All types of cancer, males; age adjusted death rate by county, 2012-2016.</p>
+            <div id="male-cancer-rates"></div>
+        </figure>
+
+        <figure class="fullwidth">
+            <p class="subtitle">All types of cancer, females; age adjusted death rate by county, 2012-2016.</p>
+            <div id="female-cancer-rates"></div>
+        </figure>
+
+        <h3>Sources</h3>
+        <p><a href="https://www.cdc.gov/cancer/uscs/dataviz/download_data.htm" target="_blank">Health data courtesy of Centers for Disease Control and 
+          Prevention</a>.</p>
+        <p><a href="https://eric.clst.org/tech/usgeojson/" target="_blank">Map data courtesy of Eric Celeste</a>.</p>
+      </section>
+    </article>
+  
+  <!-- D3 files -->
+  <script src="js/male-cancer-rates.js"></script>
+  <script src="js/female-cancer-rates.js"></script>
+
+  </body>
+</html>

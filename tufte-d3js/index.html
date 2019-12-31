@@ -5,10 +5,7 @@
     <title>Tufte in D3.js</title>
     <link rel="stylesheet" href="css/tufte.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
-    <!-- <link rel="stylesheet" href="latex.css"/> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="js/d3.min.js"></script>
-    <script src="js/d3-geo.min.js"></script>
   </head>
 
   <body>
@@ -24,25 +21,16 @@
             <span class="sidenote"><a href="https://www.edwardtufte.com/tufte/books_vdqi" target="_blank">The Visual Display of Quantitative Information</a></span> 
           and recreate those visualisations? This is the classic literature on data visualisation and it certainly kindled my love for the subject.</p>
         <p>Below are some visualisations from the book, updated for the web using D3. I’ve updated the data sources where possible but have kept to the founding 
-          principles, I hope I’ve done them justice. I will keep adding to this page as I develop my skills, so keep checking back for more.</p>
+          principles, I hope I’ve done them justice. I will keep adding charts as I develop my skills, so keep checking back for more.</p>
       </section>
 
       <section>
-        <h2 id="graphical-excellence">1. Graphical Excellence</h2>
-        <h3 id="data-maps">Data Maps</h3>
-        <figure class="fullwidth">
-            <p class="subtitle">All types of cancer, males; age adjusted death rate by county, 2012-2016.</p>
-            <div id="male-cancer-rates"></div>
-        </figure>
-
-        <figure class="fullwidth">
-            <p class="subtitle">All types of cancer, females; age adjusted death rate by county, 2012-2016.</p>
-            <div id="female-cancer-rates"></div>
-        </figure>
-
-        <p><a href="https://www.cdc.gov/cancer/uscs/dataviz/download_data.htm" target="_blank">Health data courtesy of Centers for Disease Control and 
-          Prevention</a>.</p>
-        <p><a href="https://eric.clst.org/tech/usgeojson/" target="_blank">Map data courtesy of Eric Celeste</a>.</p>
+        <h2 id="toc">Table of Contents</h2>
+        <h3 id="graphical-excellence">1. Graphical Excellence</h3>
+        <ul>
+          <li><a href="us-cancer-rates-map.html">Cancer rates in the US, 2012-2016</a></li>
+          <li><a href="nyc-weather.html">New York City's Weather in 2019</a></li>
+        </ul>
       </section>
 
       <!-- <section>
@@ -187,10 +175,6 @@
             <a href="https://www.edwardtufte.com/tufte/" target="_blank">Edward Tufte</a> for his inspirational work. All errors are of course mine.</p>
         </section>
     </article>
-  
-  <!-- D3 files -->
-  <script src="js/male-cancer-rates.js"></script>
-  <script src="js/female-cancer-rates.js"></script>
 
   </body>
 </html>

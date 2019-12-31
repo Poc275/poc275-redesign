@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Tufte in D3.js - New York City Weather 2019</title> 
+    <link rel="stylesheet" href="css/tufte.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3-annotation.min.js"></script>
+    <style>
+        body {
+            margin-left: 0;
+        }
+
+        div.tooltip {   
+            position: absolute;
+            max-width: 200px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            font-family: sans-serif;
+            font-size:12px;
+        }
+
+        .legend-text {
+            font-family: sans-serif;
+            font-size: 10px;
+            text-anchor: end;
+        }
+
+        .legend-text-actual {
+            font-family: sans-serif;
+            font-size: 10px;
+        }
+
+        .annotation-connector,
+        .note-line {
+            stroke-width: 0.5;
+        }
+
+        .annotation-note {
+            font-size: 11px;
+            font-family: sans-serif;
+        }
+
+        .annotation-note-bg {
+            fill-opacity: 1;
+        }
+
+        .annotation.precip-custom .annotation-note-label {
+            font-size: 10px;
+            font-style: italic;
+        }
+
+        .axis .domain {
+            stroke-width: 4px;
+        }
+
+        .axis line {
+            stroke: #fff!important;
+            stroke-width: 0.5px!important;
+        }
+    </style>
+  </head>
+
+  <body>
+    <article>
+      <h1>New York City's Weather in 2019</h1>
+      <h2>Temperature</h2>
+      <p>Bars represent range between the daily high and low. Average temperature for the year was 55.9&deg; which was identical to 2018.</p>
+    </article>
+
+    <script>
+        var w = 1500;
+        var h = 600;
+        var precipHeight = 150;
+        var padding = 35;
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        // append precipitation chart title and description
+        var precipTitle = d3.select("body")
+            .append("h3")
+            .text("Precipitation");
+        var precipText = d3.select("body")
+            .append("p")
+            .text("Cumulative monthly precipitation in inches compared with normal monthly precipitation. Total precipitation in 2019 was 52.11 inches, 2.42 inches more than normal.");
+
+        var precipSvg = d3.select("body")
+            .append("svg")
+            .attr("class", "precipChart")
+            .attr("width", w)
+            .attr("height", precipHeight);
+
+        var xScale = d3.scaleTime()
+            .domain([new Date(2019, 0, 1), new Date(2019, 11, 31)])
+            .range([padding + 5, w - padding]);
+
+        var yScale = d3.scaleLinear()
+            .domain([
+                -20,
+                110
+            ])
+            // range for y scale starts at top of screen (height) and goes down towards zero 
+            // because of the top-left origin of the co-ordinate system
+            .range([h - padding, padding]);
+
+        d3.csv("https://poc275.me/tufte-d3js/data/NYC Weather Data 2019.csv").then(function(data) {
+            buildBars(data);
+            buildPrecipChart(data);
+        }).catch(function(err) {
+            console.log(err);
+        });
+
+        // parse date values for display on axis
+        function getDate(d) {
+            var day = d.substr(0, 2);
+            var month = d.substr(3, 2) - 1;   // -1 because Jan = 0
+            var year = d.substr(6, 4);
+
+            return new Date(year, month, day);
+        }
+
+        function createLegend() {
+            var legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + w / 2 + ", 450)");
+            
+            // background colour for legend
+            legend.append("rect")
+                .attr("x", -15)
+                .attr("y", -30)
+                .attr("height", 150)
+                .attr("width", 100)
+                .style("fill", "white");
+
+            legend.append("rect")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("height", 100)
+                .attr("width", 8)
+                .style("fill", "#cbc4ab");
+
+            legend.append("rect")
+                .attr("x", 0)
+                .attr("y", 25)
+                .attr("height", 50)
+                .attr("width", 8)
+                .style("fill", "#99907f");
+
+            legend.append("rect")
+                .attr("x", 2)
+                .attr("y", 15)
+                .attr("height", 40)
+                .attr("width", 4)
+                .style("fill", "#763f59");
+
+            legend.append("text")
+                .attr("x", -8)
+                .attr("y", 0)
+                .attr("class", "legend-text")
+                .text("RECORD HIGH");
+
+            legend.append("text")
+                .attr("x", -8)
+                .attr("y", 100)
+                .attr("class", "legend-text")
+                .attr("dominant-baseline", "hanging")
+                .text("RECORD LOW");
+
+            legend.append("line")
+                .attr("x1", -3)
+                .attr("y1", 25)
+                .attr("x2", -10)
+                .attr("y2", 25)
+                .attr("stroke", "black")
+                .style("stroke-width", "0.5")
+                .style("stroke-linejoin", "round");
+
+            legend.append("line")
+                .attr("x1", -10)
+                .attr("y1", 25)
+                .attr("x2", -10)
+                .attr("y2", 75)
+                .attr("stroke", "black")
+                .style("stroke-width", "0.5")
+                .style("stroke-linejoin", "round");
+
+            legend.append("line")
+                .attr("x1", -10)
+                .attr("y1", 75)
+                .attr("x2", -3)
+                .attr("y2", 75)
+                .attr("stroke", "black")
+                .style("stroke-width", "0.5")
+                .style("stroke-linejoin", "round");
+
+            legend.append("text")
+                .attr("x", -15)
+                .attr("y", 50)
+                .attr("class", "legend-text")
+                .attr("dominant-baseline", "middle")
+                .text("NORMAL RANGE");
+
+            legend.append("line")
+                .attr("x1", 6)
+                .attr("y1", 15)
+                .attr("x2", 15)
+                .attr("y2", 15)
+                .attr("stroke", "black")
+                .style("stroke-width", "0.5")
+                .style("stroke-linejoin", "round");
+
+            legend.append("text")
+                .attr("x", 20)
+                .attr("y", 15)
+                .attr("class", "legend-text-actual")
+                .attr("dominant-baseline", "middle")
+                .text("ACTUAL HIGH");
+
+            legend.append("line")
+                .attr("x1", 6)
+                .attr("y1", 55)
+                .attr("x2", 15)
+                .attr("y2", 55)
+                .attr("stroke", "black")
+                .style("stroke-width", "0.5")
+                .style("stroke-linejoin", "round");
+
+            legend.append("text")
+                .attr("x", 20)
+                .attr("y", 55)
+                .attr("class", "legend-text-actual")
+                .attr("dominant-baseline", "middle")
+                .text("ACTUAL LOW");
+        }
+
+        function addAnnotations() {
+            // Annotate joint record high of 93 on 2nd October
+            var x = xScale(getDate("02/10/2019"));
+            var y = yScale(93);
+
+            var type = d3.annotationCustomType(
+                d3.annotationLabel,
+                {"className": "custom",
+                    "connector": {"type": "line"},
+                    "note": {"align": "dynamic",
+                            "orientation": "topBottom",
+                            "lineType": "vertical"}
+                }
+            );
+
+            var annotation = [{
+                note: {
+                    label: "TIED RECORD HIGH: 93\u00b0",
+                    bgPadding: 5
+                },
+                x: x + 4,   // + 4 to align with end of bar
+                y: y,
+                dy: -30,
+                dx: 0,
+                color: "#000",
+                className: "show-bg",
+            }];
+
+            var makeAnnotations = d3.annotation()
+                .editMode(false)
+                .notePadding(8)
+                .textWrap(120)
+                .type(type)
+                .annotations(annotation);
+
+            d3.select("svg")
+                .append("g")
+                .attr("class", "annotation-group")
+                .call(makeAnnotations);
+        }
+
+        function addPrecipitationAnnotations(data, yScale) {
+            var type = d3.annotationCustomType(
+                d3.annotationLabel,
+                {"className": "precip-custom",
+                    "note": {"align": "bottom",
+                            "orientation": "leftRight"}
+                }
+            );
+
+            var annotations = [{
+                // Jan Normal
+                note: {
+                    label: "NORMAL: 4.13",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/01/2019")) + 4,
+                y: yScale(4.13),
+                dy: -30,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Feb Normal
+                note: {
+                    label: "3.15",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/02/2019")) + 4,
+                y: yScale(3.15),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Mar Normal
+                note: {
+                    label: "4.37",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/03/2019")) + 4,
+                y: yScale(4.37),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Apr Normal
+                note: {
+                    label: "4.28",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/04/2019")) + 4,
+                y: yScale(4.28),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // May Normal
+                note: {
+                    label: "4.69",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/05/2019")) + 4,
+                y: yScale(4.69),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Jun Normal
+                note: {
+                    label: "3.84",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/06/2019")) + 4,
+                y: yScale(3.84),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Jul Normal
+                note: {
+                    label: "4.62",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/07/2019")) + 4,
+                y: yScale(4.62),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Aug Normal
+                note: {
+                    label: "4.22",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/08/2019")) + 4,
+                y: yScale(4.22),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Sep Normal
+                note: {
+                    label: "4.23",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/09/2019")) + 4,
+                y: yScale(4.23),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Oct Normal
+                note: {
+                    label: "3.85",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/10/2019")) + 4,
+                y: yScale(3.85),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Nov Normal
+                note: {
+                    label: "4.36",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/11/2019")) + 4,
+                y: yScale(4.36),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Dec Normal
+                note: {
+                    label: "3.95",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("01/12/2019")) + 4,
+                y: yScale(3.95),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Jan Actual
+                note: {
+                    label: "ACTUAL: 5.24",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/01/2019")) - 45,
+                y: yScale(5.24),
+                dy: -30,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Feb Actual
+                note: {
+                    label: "3.35",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("28/02/2019")) - 25,
+                y: yScale(3.35),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Mar Actual
+                note: {
+                    label: "3.54",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/03/2019")) - 25,
+                y: yScale(3.54),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Apr Actual
+                note: {
+                    label: "4.5",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("30/04/2019")) - 25,
+                y: yScale(4.5),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // May Actual
+                note: {
+                    label: "6.37",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/05/2019")) - 25,
+                y: yScale(6.37),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Jun Actual
+                note: {
+                    label: "4.87",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("30/06/2019")) - 25,
+                y: yScale(4.87),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Jul Actual
+                note: {
+                    label: "5.55",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/07/2019")) - 25,
+                y: yScale(5.55),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Aug Actual
+                note: {
+                    label: "3.72",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/08/2019")) - 25,
+                y: yScale(3.72),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Sep Actual
+                note: {
+                    label: "0.64",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("30/09/2019")) - 25,
+                y: yScale(0.64),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Oct Actual
+                note: {
+                    label: "5.45",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/10/2019")) - 25,
+                y: yScale(5.45),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Nov Actual
+                note: {
+                    label: "1.76",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("30/11/2019")) - 25,
+                y: yScale(1.76),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }, {
+                // Dec Actual
+                note: {
+                    label: "7.12",
+                    bgPadding: 0
+                },
+                x: xScale(getDate("31/12/2019")) - 25,
+                y: yScale(7.12),
+                dy: -15,
+                dx: 0,
+                color: "#000",
+            }];
+
+            var makeAnnotations = d3.annotation()
+                .editMode(false)
+                .disable(["connector"])
+                .notePadding(0)
+                .textWrap(60)
+                .type(type)
+                .annotations(annotations);
+
+            d3.select(".precipChart")
+                .append("g")
+                .attr("class", "annotation-group")
+                .call(makeAnnotations);
+        }
+
+        function buildBars(dataset) {
+            // record temp bars
+            svg.selectAll("#rects")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                    .attr("x", function(d, i) {
+                        return xScale(getDate(d.Time));
+                    })
+                    .attr("y", function(d) {
+                        return yScale(d.RecordMaxTemp);
+                    })
+                    .attr("width", 5)
+                    .attr("height", function(d) {
+                        // get min temp y pos from scale
+                        var minYPos = yScale(d.RecordMinTemp);
+                        // subtract the max temp y pos from this to get the height
+                        return minYPos - yScale(d.RecordMaxTemp);
+                    })
+                    .attr("fill", function(d) {
+                        return "#cbc4ab";
+                    });
+            
+            // normal temp bars
+            svg.selectAll("#rects")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                    .attr("x", function(d, i) {
+                        return xScale(getDate(d.Time));
+                    })
+                    .attr("y", function(d) {
+                        return yScale(d.NormalMaxTemp);
+                    })
+                    .attr("width", 5)
+                    .attr("height", function(d) {
+                        // get min temp y pos from scale
+                        var minYPos = yScale(d.NormalMinTemp);
+                        // subtract the max temp y pos from this to get the height
+                        return minYPos - yScale(d.NormalMaxTemp);
+                    })
+                    .attr("fill", function(d) {
+                        return "#99907f";
+                    });
+            
+            // 2019 bars
+            svg.selectAll("#rects")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                    .attr("x", function(d, i) {
+                        return xScale(getDate(d.Time));
+                    })
+                    .attr("y", function(d) {
+                        return yScale(d.MaxTemp);
+                    })
+                    .attr("width", 4)
+                    .attr("height", function(d) {
+                        // get min temp y pos from scale
+                        var minYPos = yScale(d.MinTemp);
+                        // subtract the max temp y pos from this to get the height
+                        return minYPos - yScale(d.MaxTemp);
+                    })
+                    .attr("fill", function(d) {
+                        return "#763f59";
+                    })
+                    .on("mouseover", function(d) {
+                        // hover colour
+                        d3.select(this)
+                            .transition()
+                                .duration(200)
+                                .style("fill", "#522C3E");
+
+                        mapTooltip.transition()
+                            .duration(500)      
+                            .style("opacity", .9);
+
+                        var dateFormatOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+                        var date = getDate(d.Time).toLocaleDateString('en-GB', dateFormatOptions);
+                        var tip = "<strong>" + date + "</strong><br />";
+                        var tip = tip + "<span>2019 Average: " + d.AvgTemp + "\u00b0</span><br />";
+                        var tip = tip + "<span>2019 Max: " + d.MaxTemp + "\u00b0 | 2019 Min: " + d.MinTemp + "\u00b0</span><br />";
+                        var tip = tip + "<span>Normal Max: " + d.NormalMaxTemp + "\u00b0 | Normal Min: " + d.NormalMinTemp + "\u00b0</span><br />";
+                        var tip = tip + "<span>Record Max: " + d.RecordMaxTemp + "\u00b0 | Record Min: " + d.RecordMinTemp + "\u00b0</span><br />";
+
+                        mapTooltip.html(tip)  
+                            .style("left", (d3.event.pageX + 28) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        // reset hover colour
+                        d3.select(this)
+                            .transition()
+                                .duration(200)
+                                .style("fill", "#763f59");
+
+                        mapTooltip.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+
+            //add tooltip
+            var mapTooltip = d3.select("body").append("div")   
+                        .attr("class", "tooltip")               
+                        .attr("id", "mapTooltip")
+                        .style("opacity", 0);
+
+            // create axes
+            var yAxisGen = d3.axisLeft(yScale)
+                .tickSize(0 - w)                // sets width of tick lines to cover entire chart
+                .tickSizeOuter(0)               // removes top and bottom ticks
+                .tickFormat(function(d) {
+                    // append degrees symbol
+                    return d + "\u00b0";
+                });
+
+            var yAxisGenRight = d3.axisRight(yScale)
+                // .tickSize(0 - w)                // sets width of tick lines to cover entire chart
+                .tickSizeOuter(0)               // removes top and bottom ticks
+                .tickFormat(function(d) {
+                    // append degrees symbol
+                    return d + "\u00b0";
+                });
+
+            var xAxisGen = d3.axisTop(xScale)
+                .tickFormat(d3.timeFormat("%B"))
+                .tickSize(0 - h + 60);
+
+            // append the axes
+            // note 'g' is an svg group tag, kind of like a div,
+            // it's a way of grouping together elements
+            // useful for axes as it generates a lot of lines and text
+            var yAxis = svg.append("g")
+                .call(yAxisGen)
+                .attr("class", "axis")                                          // set css class as an attribute
+                .attr("transform", "translate(" + (padding + 2.5) + ", 0)")     // shift the axes to the left to align with first bar
+                .call(g => g.select(".domain").attr("stroke", "#99907f"));       // set colour of vertical bar
+
+            var yAxisRight = svg.append("g")
+                .call(yAxisGenRight)
+                .attr("class", "axis")                                          // set css class as an attribute
+                .attr("transform", "translate(" + (w - padding + 5) + ", 0)")     // shift the axes to the left to align with first bar
+                .call(g => g.select(".domain").attr("stroke", "#99907f"));       // set colour of vertical bar
+
+            var xAxis = svg.append("g")
+                .call(xAxisGen)
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0, " + padding + ")")
+                .style("text-anchor", "middle")
+                .style("text-transform", "uppercase")
+                .style("font-weight", "bold")
+                .call(g => g.select(".domain").remove())                    // remove horizontal bar
+                .call(g => g.select(".tick:first-of-type line")             // hide January tick line
+                    .attr("stroke-opacity", 0))
+                .call(g => g.selectAll(".tick:not(:first-of-type) line")    // show dashed tick lines
+                    .attr("stroke-opacity", 0.5)
+                    .attr("stroke-dasharray", "2,2"))
+                .call(g => g.selectAll(".tick text")                        // position month labels
+                    .attr("x", 60)
+                    .attr("dy", -10));
+
+            // add legend
+            createLegend();
+
+            // add annotations
+            addAnnotations();
+        }
+
+        function buildPrecipChart(data) {
+            var precipChartPadding = 5;
+
+            // get data by month so we can draw separate line charts
+            var monthlyData = d3.nest()
+                .key(function(d) {
+                    var date = getDate(d.Time);
+                    return date.getMonth();
+                })
+                .entries(data);
+
+            var precipYScale = d3.scaleLinear()
+                .domain([
+                    0, 8
+                    // d3.min(data, function(d) {
+                    //     return d.MonthlyCumulativePrecipitation;
+                    // }),
+                    // d3.max(data, function(d) {
+                    //     return d.MonthlyCumulativePrecipitation;
+                    // })
+                ])
+                .range([precipHeight - precipChartPadding, precipChartPadding]);
+
+            var lineFun = d3.line()
+                .x(function(d) {
+                    return xScale(getDate(d.Time));
+                })
+                .y(function(d) {
+                    return precipYScale(d.MonthlyCumulativePrecipitation);
+                })
+                .curve(d3.curveLinear);
+
+            var areaFun = d3.area()
+                .x(function(d) {
+                    return xScale(getDate(d.Time));
+                })
+                .y1(function(d) {
+                    return precipYScale(d.MonthlyCumulativePrecipitation);
+                })
+                .y0(function(d) {
+                    return precipYScale(0);
+                })
+                .curve(d3.curveLinear);
+
+            var lines = monthlyData.map(function(monthData) {
+                precipSvg.append("path")
+                    .attr("d", lineFun(monthData.values))
+                    .attr("stroke", "#336666")
+                    .attr("stroke-width", "3px")
+                    .attr("fill", "none");
+            });
+
+            // add filled area below lines
+            var areas = monthlyData.map(function(monthData) {
+                precipSvg.append("path")
+                    .attr("d", areaFun(monthData.values))
+                    .attr("stroke-width", "0px")
+                    .attr("fill", "#c3bca5");
+            });
+
+            // create axes
+            var yAxisGen = d3.axisLeft(precipYScale)
+                .ticks(6)
+                .tickSize(0 - w)
+                .tickSizeOuter(0);
+
+            var yAxisGenRight = d3.axisRight(precipYScale)
+                .ticks(6)
+                .tickSizeOuter(0);
+
+            var xAxisGen = d3.axisBottom(xScale)
+                // .tickFormat(d3.timeFormat("%B"))
+                .tickFormat(function(d) {
+                    return null;
+                })
+                .tickSize(precipHeight);
+
+            // append the axes
+            // note 'g' is an svg group tag, kind of like a div,
+            // it's a way of grouping together elements
+            // useful for axes as it generates a lot of lines and text
+            var yAxis = precipSvg.append("g")
+                .call(yAxisGen)
+                .attr("class", "axis")                                          // set css class as an attribute
+                .attr("transform", "translate(" + (padding + 2) + ", 0)")     // shift the axes to the left
+                .call(g => g.select(".domain").attr("stroke", "#99907f"));
+
+            var yAxisRight = precipSvg.append("g")
+                .call(yAxisGenRight)
+                .attr("class", "axis")
+                .attr("transform", "translate(" + (w - padding + 2) + ", 0)")
+                .call(g => g.select(".domain").attr("stroke", "#99907f"));
+
+            var xAxis = precipSvg.append("g")
+                .call(xAxisGen)
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0,0)")
+                .style("text-anchor", "middle")
+                .style("text-transform", "uppercase")
+                .call(g => g.select(".domain").remove())                    // remove horizontal bar
+                .call(g => g.select(".tick:first-of-type line")             // hide January tick line
+                    .attr("stroke-opacity", 0))
+                .call(g => g.selectAll(".tick:not(:first-of-type) line")    // show dashed tick lines
+                    .attr("stroke-opacity", 0.5)
+                    .attr("stroke-dasharray", "2,2"))
+                .call(g => g.selectAll(".tick text")                        // position month labels
+                    .attr("x", 60)
+                    .attr("dy", 0));
+
+            var normalPrecipLineFun = d3.line()
+                .x(function(d) {
+                    return xScale(getDate(d.Time));
+                })
+                .y(function(d) {
+                    return precipYScale(d.NormalPrecipitation);
+                })
+                .curve(d3.curveLinear);
+
+            // add normal precipitation lines
+            var normalPrecipLines = monthlyData.map(function(monthData) {
+                precipSvg.append("path")
+                    .attr("d", normalPrecipLineFun(monthData.values))
+                    .attr("stroke", "#547985")
+                    .attr("stroke-width", "1.5px")
+                    .attr("stroke-linejoin", "bevel")
+                    .attr("fill", "none");
+            });
+
+            // add annotations
+            addPrecipitationAnnotations(monthlyData, precipYScale);
+        }
+    </script>
+
+    <h3>Sources</h3>
+    <ul>
+        <li>Normal and record temperature data courtesty of <a href="https://www.weather.gov/okx/CentralParkHistorical" target="_blank">The National Weather Service</a></li>
+        <li>2019 weather data courtesy of <a href="https://www.wunderground.com/history/monthly/us/ny/new-york-city/KLGA/date/2019-1" target="_blank">Weather Underground</a></li>
+        <li>Normal precipitation data courtesy of <a href="https://hypertextbook.com/facts/2005/LauraDePalma.shtml" target="_blank">The Physics Factbook</a></li>
+        <li>D3 annotations courtesy of <a href="https://d3-annotation.susielu.com/" target="_blank">Susie Lu</a></li>
+    </ul>
+    <small>This chart was originally created for New York City's weather in 2003 by the New York Times. Printed on January 4, 2004.</small>
+  </body>
+</html>
