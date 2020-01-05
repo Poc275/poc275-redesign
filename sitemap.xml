@@ -158,7 +158,7 @@
     <url>
         <loc>https://poc275.me/tufte-d3js/index.html</loc>
         <changefreq>monthly</changefreq>
-        <lastmod>2019-12-31</lastmod>
+        <lastmod>2020-01-05</lastmod>
     </url>
 
     <url>
@@ -169,8 +169,14 @@
 
     <url>
         <loc>https://poc275.me/tufte-d3js/nyc-weather.html</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>yearly</changefreq>
         <lastmod>2019-12-31</lastmod>
+    </url>
+
+    <url>
+        <loc>https://poc275.me/tufte-d3js/paris-lyon-train-timetable.html</loc>
+        <changefreq>yearly</changefreq>
+        <lastmod>2020-01-05</lastmod>
     </url>
 
     <!-- USA/Canada Trip -->

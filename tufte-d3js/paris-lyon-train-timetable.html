@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Tufte in D3.js - Paris to Lyon Train Timetable</title> 
+    <link rel="stylesheet" href="css/tufte.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/d3.min.js"></script>
+    <style>
+        body {
+            margin-left: 0;
+        }
+
+        path.Old {
+            visibility: hidden;
+        }
+
+        #legend {
+            visibility: hidden;
+        }
+
+        #old-legend {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: #7570b3;
+        }
+
+        #tgv-legend {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: #1b9e77;
+        }
+
+        #ter-legend {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: #d95f02;
+        }
+    </style>
+  </head>
+
+  <body>
+    <article>
+      <h1>Paris to Lyon Train Timetable</h1>
+      <p>I personally found this chart hard to read in its original form. I've added some buttons below the chart to make it easier to navigate. The 
+          first changes the colour of the gridlines, bringing the data to the fore. The next adds some colour to the lines to help distinguish between them, in this case 
+          colouring by the type of train, and the last button overlays one of the original trains from the 1880s so you can see how much faster the modern trains are.
+      </p>
+    </article>
+
+    <script>
+        var margin = {
+            top: 30,
+            right: 20,
+            bottom: 30,
+            left: 150
+        };
+        var w = 1500 - margin.left - margin.right;
+        var h = 800 - margin.top - margin.bottom;
+
+        var toggled = false;
+        var oldTrainDrawn = false;
+        var showColour = false;
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w + margin.left + margin.right)
+            .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var xScale = d3.scaleTime()
+            .domain([new Date(2019, 0, 1, 5, 0, 0), new Date(2019, 0, 2, 0, 0, 0)])
+            .range([0, w]);
+
+        var yScale = d3.scaleLinear()
+            .domain([
+                0,
+                510
+            ])
+            .range([0, h]);
+
+        d3.csv("https://poc275.me/tufte-d3js/data/Paris-Lyon-Train-Times.csv").then(function(data) {
+            // separate distance info (first row) and the train times
+            var distances = data[0];
+            var trainTimes = data.slice(1);
+            buildLines(distances, trainTimes);
+
+        }).catch(function(err) {
+            console.log(err);
+        });
+
+        // parse date/times
+        function getDate(d) {
+            var hour = d.substr(0, 2);
+            var minute = d.substr(3, 2);
+            return new Date(2019, 0, 1, hour, minute);
+        }
+
+        function buildLines(distances, trainTimes) {
+            var lineFun = d3.line()
+                .x(function(d) {
+                    return xScale(getDate(d.x));
+                })
+                .y(function(d) {
+                    return yScale(d.y);
+                })
+                .curve(d3.curveLinear);
+
+            // remove missing stations that the train doesn't stop at
+            var filteredTrainTimes = trainTimes.map(function(time) {
+                var filteredTime = [];
+                for(var prop in time) {
+                    // if the train doesn't stop at the station it is an empty string
+                    if(time[prop] !== "") {
+                        filteredTime.push(time[prop]);
+                    }
+                }
+                return filteredTime;
+            });
+
+            var filteredDistances = trainTimes.map(function(time) {
+                var filteredDistance = [];
+                for(var prop in time) {
+                   // if the train doesn't stop at the station it is an empty string
+                   if(time[prop] !== "" && prop != "Train") {
+                         // find station and get distance from Paris
+                        var distance = -1;
+                        for(var distanceProp in distances) {
+                            if(distanceProp.includes(prop)) {
+                                filteredDistance.push(distances[distanceProp]);
+                            }
+                        }
+                    }
+                }
+                return filteredDistance;
+            });
+
+            var combinedData = [];
+            for(var i = 0; i < filteredTrainTimes.length; i++) {
+                var values = [];
+                for(var j = 0; j < filteredTrainTimes[i].length; j++) {
+                    // first element is train type, we'll use this as the key later
+                    if(j > 0) {
+                        values.push({
+                            x: filteredTrainTimes[i][j],
+                            y: filteredDistances[i][j - 1]  // j - 1 for the distance array as this doesn't have a key
+                        });
+                    }
+                }
+                combinedData.push({
+                    key: filteredTrainTimes[i][0],
+                    values: values
+                });
+            }
+
+            var lines = combinedData.map(function(train) {
+                svg.append("path")
+                    .attr("d", lineFun(train.values))
+                    .attr("stroke", "#000")
+                    .attr("class", train.key)
+                    .attr("stroke-width", "1px")
+                    .attr("fill", "none");
+            });
+
+            // build axes
+            var xAxisTopGen = d3.axisTop(xScale)
+                .ticks(d3.timeMinute.every(10))
+                .tickSizeInner([0])
+                .tickSizeOuter([0])
+                .tickFormat(function(d, i) {
+                    // only show label on the hour
+                    var hour = new Date(d).getHours();
+                    if(hour === 0) {
+                        return i % 6 === 0 ? "MINUIT" : null;
+                    } else if(hour < 12) {
+                        return i % 6 === 0 ? hour : null;
+                    } else if(hour === 12) {
+                        return i % 6 === 0 ? "MIDI" : null;
+                    } else {
+                        return i % 6 === 0 ? hour - 12 : null;
+                    }
+                });
+
+            var xAxisBottomGen = d3.axisBottom(xScale)
+                .tickSize(0 - h)
+                .ticks(d3.timeMinute.every(10))
+                .tickFormat(function(d, i) {
+                    // only show label on the hour
+                    var hour = new Date(d).getHours();
+                    if(hour === 0) {
+                        return i % 6 === 0 ? "MINUIT" : null;
+                    } else if(hour < 12) {
+                        return i % 6 === 0 ? hour : null;
+                    } else if(hour === 12) {
+                        return i % 6 === 0 ? "MIDI" : null;
+                    } else {
+                        return i % 6 === 0 ? hour - 12 : null;
+                    }
+                });
+
+            var xAxisTop = svg.append("g")
+                .call(xAxisTopGen)
+                .attr("class", "x-axis")
+                .call(g => g.selectAll(".tick text")            // modify tick label positions
+                    .attr("dy", -5));
+
+            var xAxisBottom = svg.append("g")
+                .call(xAxisBottomGen)
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0," + h + ")")
+                .call(g => g.selectAll(".tick text")            // modify tick label positions
+                    .attr("dy", 15));
+
+            var yAxisLabels = [
+                'PARIS',
+                'Sens',
+                'Joigny',
+                'Laroche Migennes',
+                'St Florentin Vergigny',
+                'TONNERRE',
+                'Nuits Sous Ravieres',
+                'Montbard',
+                'Les Laumes Alesia',
+                'Le Creusot - Montceau',
+                'DIJON',
+                'Beaune',
+                'Chagny',
+                'Chalon Sur Saone',
+                'Tournus',
+                'MACON',
+                'Belleville Sur Saone',
+                'Villefranche Sur Saone',
+                'St Germain Au Mont D\'or',
+                'LYON'
+            ];
+
+            var yAxisGen = d3.axisLeft(yScale)
+                .ticks(20)
+                .tickSize(0 - w)
+                .tickValues([0, 110, 135, 160, 170, 190, 224, 240, 258, 274, 310, 351, 362, 381, 410, 437, 462, 477, 491, 510])
+                .tickFormat(function(d, i) { return yAxisLabels[i]; });
+
+            var yAxis = svg.append("g")
+                .call(yAxisGen)
+                .attr("class", "axis")
+                .call(g => g.select(".domain").remove())        // remove vertical 'domain' line
+                .call(g => g.selectAll(".tick text")            // modify tick label positions
+                    .attr("dx", -10));
+
+            // toggle grid event handler
+            d3.select("#toggle-grid").on("click", function(d, i) {
+                if(!toggled) {
+                    toggled = !toggled;
+
+                    d3.selectAll(".x-axis .tick line")
+                    .style("stroke", "#d5d5d5")
+                    .style("stroke-width", "0.5px");
+
+                    // y-axis
+                    d3.selectAll(".axis .tick line")
+                        .style("stroke", "#d5d5d5")
+                        .style("stroke-width", "1px");
+                } else {
+                    // back to original
+                    toggled = !toggled;
+
+                    d3.selectAll(".x-axis .tick line")
+                    .style("stroke", "#000")
+                    .style("stroke-width", "1px");
+
+                    // y-axis
+                    d3.selectAll(".axis .tick line")
+                        .style("stroke", "#000")
+                        .style("stroke-width", "1px");
+                }
+            });
+
+            // show old train event handler
+            d3.select("#show-old").on("click", function(d, i) {
+                if(!oldTrainDrawn) {
+                    oldTrainDrawn = !oldTrainDrawn;
+                    d3.select("path.Old")
+                        .style("visibility", "visible");
+                } else {
+                    oldTrainDrawn = !oldTrainDrawn;
+                    d3.select("path.Old")
+                        .style("visibility", "hidden");
+                }
+            });
+
+            // colour by train type event handler
+            d3.select("#show-colour").on("click", function(d, i) {
+                if(!showColour) {
+                    showColour = !showColour;
+                    d3.selectAll("path.Old")
+                        .style("stroke", "#7570b3");
+                    d3.selectAll("path.TER")
+                        .style("stroke", "#d95f02");
+                    d3.selectAll("path.TGV")
+                        .style("stroke", "#1b9e77");
+                    d3.select("#legend")
+                        .style("visibility", "visible");
+                } else {
+                    showColour = !showColour;
+                    d3.selectAll("path.Old")
+                        .style("stroke", "#000");
+                    d3.selectAll("path.TER")
+                        .style("stroke", "#000");
+                    d3.selectAll("path.TGV")
+                        .style("stroke", "#000");
+                    d3.select("#legend")
+                        .style("visibility", "hidden");
+                }
+            });
+        }
+    </script>
+
+    <div>
+        <button id="toggle-grid">Toggle Grid Colour</button>
+        <button id="show-colour">Toggle Colour</button>
+        <button id="show-old">Toggle 1880 Train</button>
+        <div id="legend">
+            <p>Legend:</p>
+            <div id="old-legend"></div> 1880 <br />
+            <div id="tgv-legend"></div> TGV <br />
+            <div id="ter-legend"></div> TER
+        </div>
+    </div>
+
+    <h3>Sources</h3>
+    <ul>
+        <li>Train times scraped from the <a href="https://en.oui.sncf/en/train/timetables/paris/lyon" target="_blank">SNCF timetables</a></li>
+        <li>Distance data retrieved from 
+            <a href="https://www.sncf-reseau.com/sites/default/files/2019-03/POSTER_Mars%202019_POUR_LE_WEB_1.pdf" target="_blank">
+                this map of the French railway network
+            </a>
+        </li>
+    </ul>
+  </body>
+</html>
